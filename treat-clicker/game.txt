@@ -1,0 +1,17 @@
+Let's make a game!
+	name:Treat Clicker
+	by:Me
+	desc:Treats For Pets Around The World
+	created:10/11/2021
+	updated:10/11/2021
+	version:1
+
+Settings
+	background:images/background.jpg
+	building cost increase:115%
+	building cost refund:75%
+	spritesheet:icons, 48 by 48, stuff/bunnyIcons.png
+	stylesheet:stuff/bigBlue.css
+
+Layout
+	use default
