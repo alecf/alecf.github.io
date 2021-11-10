@@ -1,7 +1,7 @@
 Let's make a game!
 	name:Treat Clicker
 	by:Me
-	desc:Treats For Pets Around The World
+	desc:Treats For Pets Around The World!
 	created:10/11/2021
 	updated:10/11/2021
 	version:1
