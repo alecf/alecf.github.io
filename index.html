@@ -278,9 +278,9 @@ footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
 
 <main class="wrap">
   <section class="intro">
-    <div class="eyebrow">Software developer · 30+ years in · Still building</div>
-    <h1>Hi, I'm Alec. I build the things I <em>can't stop thinking about.</em></h1>
-    <p>By day I help startups get off the ground at The General Partnership. The rest of the time I'm turning a long list of ideas into working software, lately with a lot of help from AI. Here's what I've been building.</p>
+    <div class="eyebrow">Software developer</div>
+    <h1>Hi, I'm <em>Alec.</em></h1>
+    <p>Here's what I've been building lately.</p>
   </section>
 
   <section class="band" id="projects">
@@ -307,7 +307,7 @@ footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
       <article class="proj" id="total-recall" data-status="open" data-started="2026-04-01" data-updated="2026-10-26" data-commits="157" data-repo="alecf/totalrecall" data-map="179,83">
         <h3>Total Recall</h3>
         <p class="stack">macOS menu bar app · Swift</p>
-        <p>A menu bar app that shows where your Mac's memory actually went. It groups processes the way you think about them (Chrome by profile, Claude Code by workspace) and lives by one rule: blue is RAM, amber is not.</p>
+        <p>A menu bar app that shows where your Mac's memory actually went. It groups processes by the app they belong to, and lives by one rule: blue is RAM, amber is not.</p>
         <figure>
           <img src="projects/total-recall/main-window.png" alt="Total Recall's main window: the Memory River bar across the top, then app groups with sparklines and memory totals" width="780" height="560" loading="lazy">
           <figcaption>The Memory River shows the gap between what an app is charged for and what's really in RAM. That gap is usually why a machine with "plenty of free memory" still feels slow.</figcaption>
@@ -330,7 +330,7 @@ footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
       <article class="proj" id="thicket" data-status="rough" data-started="2026-08-09" data-updated="2026-10-05" data-commits="107" data-repo="alecf/thicket" data-map="149,112">
         <h3>Thicket</h3>
         <p class="stack">CLI · TypeScript</p>
-        <p>A CLI that reads a TypeScript codebase and writes a plain-text report of duplication and tangled modules, made to be read by an LLM inside a refactoring loop. No score, no grade, and it is not a linter: it finds the candidates and leaves the judgment to the reader.</p>
+        <p>A CLI that reads a TypeScript codebase and writes a plain-text report of duplication and tangled modules, made to be read by an LLM inside a refactoring loop.</p>
         <pre><span class="c"># the loop</span>
 thicket report → LLM picks targets → LLM refactors → thicket report → …
 
