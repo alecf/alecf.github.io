@@ -1,0 +1,1291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alec</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Alec is a product engineer with 30+ years in the industry. Side projects, background, and a map of his career.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Mono:wght@400;500&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: projects first, as trail-condition cards topped by a topo crop of each
+   project's peak. Then the trail map: career waypoints and project peaks on one
+   route, hobbies as side trails, with an elevation profile. Then a short about. */
+:root {
+  --paper: #eef0e8;
+  --sheet: #f8f8f3;
+  --ink: #1d2721;
+  --muted: #59655d;
+  --rule: #c9cfc2;
+  --contour: #9b7752;
+  --contour-index: #7a5534;
+  --trail: #d8235f;
+  --spur: #6a3ea1;
+  --water: #b5d0da;
+  --water-edge: #6f9fb2;
+  --terrain-lo: #d9e2cc;
+  --terrain-hi: #f7f6ef;
+  --shade: #47503f;
+  --tree: #5f8a52;
+  --sign: #5a3a22;
+  --sign-ink: #f3e7cf;
+  --code-bg: #1d2721;
+  --code-ink: #d9e6dc;
+  --font-display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "Spectral", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1613; --sheet: #141f1b; --ink: #e5ece6; --muted: #93a49a; --rule: #2a3a33;
+    --contour: #3b6a5c; --contour-index: #5f9a87; --trail: #ff4f8b; --spur: #b48cf0;
+    --water: #0f2a34; --water-edge: #2f6b80; --terrain-lo: #101c18; --terrain-hi: #1a2a24;
+    --shade: #000000; --tree: #3f7a5a; --sign: #3a2616; --sign-ink: #f0dfbf;
+    --code-bg: #08100d; --code-ink: #cfe0d4;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e1613; --sheet: #141f1b; --ink: #e5ece6; --muted: #93a49a; --rule: #2a3a33;
+  --contour: #3b6a5c; --contour-index: #5f9a87; --trail: #ff4f8b; --spur: #b48cf0;
+  --water: #0f2a34; --water-edge: #2f6b80; --terrain-lo: #101c18; --terrain-hi: #1a2a24;
+  --shade: #000000; --tree: #3f7a5a; --sign: #3a2616; --sign-ink: #f0dfbf;
+  --code-bg: #08100d; --code-ink: #cfe0d4;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 16px; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--font-body);
+}
+img { max-width: 100%; }
+a { color: inherit; text-decoration-color: var(--trail); text-underline-offset: 3px; }
+a:hover { color: var(--trail); }
+:focus-visible { outline: 2px solid var(--trail); outline-offset: 2px; }
+.wrap {
+  max-width: 1320px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.eyebrow { font: 500 0.72rem/1.3 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; line-height: 0.95; text-wrap: balance; margin: 0; letter-spacing: 0.01em; }
+.hint { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); margin: 0; }
+
+/* ---------- top bar ---------- */
+.topbar { padding-block: 14px; display: flex; gap: 16px; align-items: baseline; justify-content: space-between; flex-wrap: wrap; }
+.wordmark { font: 800 1.5rem/1 var(--font-display); letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; }
+.topbar nav { display: flex; gap: 18px; flex-wrap: wrap; }
+.topbar nav a { font: 500 0.78rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; color: var(--muted); }
+.topbar nav a:hover { color: var(--trail); }
+
+/* ---------- intro ---------- */
+.intro { padding-block: 40px 8px; display: grid; gap: 16px; max-width: 1000px; }
+.intro h1 { font-size: clamp(2.8rem, 7.5vw, 5.6rem); text-transform: uppercase; }
+.intro h1 em { font-style: normal; color: var(--trail); }
+.intro p { margin: 0; font-size: 1.22rem; max-width: 60ch; }
+
+section.band { padding-block: 56px 8px; }
+.band-head { display: flex; justify-content: space-between; align-items: end; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 22px; }
+.band-head h2 { font-size: clamp(2.2rem, 5.5vw, 3.8rem); text-transform: uppercase; }
+.band-head p { margin: 0; max-width: 58ch; color: var(--muted); }
+
+/* ---------- projects ---------- */
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.proj {
+  background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden;
+  min-width: 0; transition: box-shadow .3s, border-color .3s;
+}
+.proj.flash { border-color: var(--trail); box-shadow: 0 0 0 3px color-mix(in srgb, var(--trail) 30%, transparent); }
+.status { display: inline-flex; align-items: center; gap: 7px; font: 500 0.7rem/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.dot.open { background: #3fbf72; }
+.dot.rough { background: #e6b030; }
+.dot.building { background: #ff6f9c; }
+.dot.idea { background: transparent; border: 2px solid var(--muted); }
+.proj .body { padding: 20px 20px 16px; display: flex; flex-direction: column; gap: 12px; }
+.proj h3 { font-size: 2rem; text-transform: uppercase; letter-spacing: .03em; }
+.proj p { margin: 0; }
+.proj .stack { font: 400 0.74rem/1.4 var(--font-mono); color: var(--muted); margin-top: -6px; }
+.proj figure { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.proj .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
+.proj figure img { display: block; width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--rule); background: var(--paper); }
+.proj figure img.pixels { image-rendering: pixelated; }
+.proj figure img.narrow { max-width: 320px; }
+.proj figcaption { font: 400 0.72rem/1.4 var(--font-mono); color: var(--muted); grid-column: 1 / -1; }
+.proj pre {
+  margin: 0; background: var(--code-bg); color: var(--code-ink); border-radius: 6px; padding: 12px 14px; overflow-x: auto;
+  font: 400 0.78rem/1.55 var(--font-mono);
+}
+.proj pre .c { opacity: .55; }
+.proj code { font: 400 0.86em var(--font-mono); }
+.proj .mm { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 14px 16px; font-size: 1.02rem; line-height: 1.6; }
+.proj .facts { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.proj .links { display: flex; gap: 8px 16px; flex-wrap: wrap; align-items: center; font: 500 0.8rem/1.2 var(--font-mono); border-top: 1px solid var(--rule); padding-top: 12px; }
+.linkbtn { background: none; border: 0; padding: 0; color: var(--muted); font: inherit; cursor: pointer; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+.linkbtn:hover { color: var(--trail); }
+.proj .links .share { margin-left: auto; }
+
+/* ---------- map ---------- */
+.hero { display: grid; grid-template-columns: minmax(0, 330px) minmax(0, 1fr); border: 1px solid var(--rule); background: var(--sheet); }
+.sheet { padding: 24px; display: flex; flex-direction: column; gap: 16px; border-right: 1px solid var(--rule); min-width: 0; }
+.sheet h3 { font-size: clamp(2.2rem, 4vw, 3rem); text-transform: uppercase; }
+.sheet h3 small { display: block; font-size: 0.45em; color: var(--muted); letter-spacing: 0.08em; margin-top: 8px; font-weight: 600; }
+.sheet p { margin: 0; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: 0; border-radius: 999px;
+  background: var(--trail); color: #fff; font: 600 0.95rem/1 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 12px 18px; align-self: flex-start;
+}
+.btn:hover { filter: brightness(1.08); color: #fff; }
+.legend { display: grid; gap: 8px; margin: 0; padding: 14px 0 0; border-top: 1px solid var(--rule); }
+.legend div { display: grid; grid-template-columns: 26px 1fr; align-items: center; gap: 8px; font-size: 0.92rem; }
+.legend dt { display: flex; justify-content: center; }
+.legend dd { margin: 0; }
+.legend svg { display: block; }
+.legend .fine { grid-template-columns: 1fr; font: 400 0.7rem/1.5 var(--font-mono); color: var(--muted); }
+
+.map {
+  position: relative; min-height: clamp(520px, 78vh, 860px); overflow: hidden; touch-action: none;
+  cursor: grab; background: var(--paper); user-select: none; -webkit-user-select: none; min-width: 0;
+}
+.map.dragging { cursor: grabbing; }
+.map > canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.markers { position: absolute; inset: 0; pointer-events: none; }
+.mk {
+  position: absolute; left: 0; top: 0; pointer-events: auto; border: 0; padding: 0; background: none; color: var(--ink);
+  display: flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; will-change: transform;
+}
+.mk .sym { width: 22px; height: 22px; display: grid; place-items: center; flex: none; transform: translate(-11px, 0); }
+.mk .lbl { transform: translate(-8px, 0); font: italic 400 0.98rem/1.1 var(--font-body); text-shadow: 0 0 3px var(--paper), 0 0 3px var(--paper), 0 0 6px var(--paper); }
+.mk.flip { flex-direction: row-reverse; translate: -100% 0; }
+.mk.flip .sym { transform: translate(11px, 0); }
+.mk.flip .lbl { transform: translate(8px, 0); }
+.mk.peak .lbl { font: 800 1.02rem/1 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; font-style: normal; }
+.mk.career .lbl { font: 600 0.88rem/1 var(--font-display); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.mk.hobby .lbl { color: var(--spur); font-size: 0.9rem; opacity: 0; transition: opacity .2s; }
+.map.close .mk.hobby .lbl, .mk.hobby:hover .lbl, .mk.hobby:focus-visible .lbl, .mk.active .lbl { opacity: 1; }
+.mk:hover .lbl, .mk.active .lbl { color: var(--trail); }
+.mk.hobby:hover .lbl, .mk.hobby.active .lbl { color: var(--spur); text-decoration: underline; }
+.mk:focus-visible { outline: none; }
+.mk:focus-visible .sym { outline: 2px solid var(--trail); border-radius: 50%; }
+.place { position: absolute; left: 0; top: 0; pointer-events: none; font: italic 400 1rem/1 var(--font-body); color: var(--water-edge); letter-spacing: 0.2em; white-space: nowrap; text-shadow: 0 0 4px var(--paper); }
+.place.forest { color: var(--tree); }
+.place.region { color: var(--muted); font: 600 1.05rem/1 var(--font-display); letter-spacing: 0.35em; text-transform: uppercase; opacity: 0.75; }
+
+.ctrl { position: absolute; top: 12px; left: 12px; display: flex; flex-direction: column; gap: 6px; z-index: 3; }
+.ctrl button {
+  width: 34px; height: 34px; border-radius: 6px; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink);
+  font: 500 1.1rem/1 var(--font-mono); cursor: pointer;
+}
+.ctrl button:hover { color: var(--trail); border-color: var(--trail); }
+.readout {
+  position: absolute; left: 12px; bottom: 12px; z-index: 3; pointer-events: none;
+  background: color-mix(in srgb, var(--sheet) 88%, transparent); border: 1px solid var(--rule); border-radius: 4px; padding: 5px 8px;
+  font: 400 0.7rem/1.3 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums;
+}
+.coop {
+  position: absolute; inset: 0; display: grid; place-items: center; z-index: 4; pointer-events: none;
+  background: color-mix(in srgb, var(--ink) 35%, transparent); color: var(--paper);
+  font: 600 1.1rem/1 var(--font-display); letter-spacing: .1em; text-transform: uppercase; opacity: 0; transition: opacity .25s;
+}
+.coop.show { opacity: 1; }
+
+.card {
+  position: absolute; z-index: 5; top: 12px; right: 12px; width: min(360px, calc(100% - 24px)); max-height: calc(100% - 24px); overflow: auto;
+  background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 18px 14px;
+  box-shadow: 0 10px 30px -12px rgba(0,0,0,.35); cursor: auto; user-select: text; -webkit-user-select: text;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.card h2 { font-size: 2rem; text-transform: uppercase; padding-right: 24px; }
+.card .kind { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.card .kind .tag { font: 500 0.68rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 6px; border-radius: 3px; background: var(--trail); color: #fff; }
+.card.hobby .kind .tag { background: var(--spur); }
+.card.career .kind .tag { background: var(--ink); color: var(--paper); }
+.card p { margin: 0; }
+.card .meta { font: 400 0.74rem/1.5 var(--font-mono); color: var(--muted); }
+.card .links { display: flex; gap: 14px; flex-wrap: wrap; font: 500 0.8rem/1.2 var(--font-mono); }
+.card .nav { display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 4px; }
+.card .nav button { background: none; border: 0; color: var(--muted); font: 500 0.75rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; cursor: pointer; padding: 6px 0; }
+.card .nav button:hover:not(:disabled) { color: var(--trail); }
+.card .nav button:disabled { opacity: .35; cursor: default; }
+.card .x { position: absolute; top: 8px; right: 8px; width: 30px; height: 30px; border: 0; background: none; color: var(--muted); font-size: 1.3rem; cursor: pointer; border-radius: 50%; }
+.card .x:hover { color: var(--trail); }
+
+.profile { grid-column: 1 / -1; border-top: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 330px) minmax(0, 1fr); }
+.profile .label { padding: 14px 24px; border-right: 1px solid var(--rule); display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.profile .label strong { font: 800 1.15rem/1 var(--font-display); text-transform: uppercase; letter-spacing: .06em; }
+.profile canvas { width: 100%; height: 130px; display: block; cursor: crosshair; touch-action: pan-y; }
+.stops { grid-column: 1 / -1; border-top: 1px solid var(--rule); padding: 12px 24px; display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+.stops button {
+  border: 1px solid var(--rule); background: none; color: var(--ink); border-radius: 999px; padding: 5px 11px; cursor: pointer;
+  font: 400 0.85rem/1.2 var(--font-body);
+}
+.stops button.peak { border-color: color-mix(in srgb, var(--trail) 55%, var(--rule)); }
+.stops button.hobby { border-style: dashed; border-color: color-mix(in srgb, var(--spur) 55%, var(--rule)); }
+.stops button:hover, .stops button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ---------- about ---------- */
+.station { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.station .bio p { margin: 0 0 1em; max-width: 62ch; font-size: 1.12rem; }
+.facts-table { border-top: 2px solid var(--ink); margin: 0; }
+.facts-table div { display: grid; grid-template-columns: 8.5em 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.facts-table dt { font: 500 0.72rem/1.6 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.facts-table dd { margin: 0; }
+.photo {
+  aspect-ratio: 4 / 3; max-width: 100%; border: 1px dashed var(--rule); border-radius: 6px; display: grid; place-items: center; margin-bottom: 18px;
+  color: var(--muted); font: 400 0.75rem/1.4 var(--font-mono); text-align: center; padding: 16px;
+}
+
+footer { margin-top: 64px; border-top: 1px solid var(--rule); padding-block: 24px 40px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: baseline; }
+footer .links { display: flex; gap: 20px; flex-wrap: wrap; font: 500 0.85rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; }
+footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
+
+.toast {
+  position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 20;
+  background: var(--ink); color: var(--paper); padding: 10px 14px; border-radius: 6px; font: 500 0.8rem/1.3 var(--font-mono); max-width: calc(100vw - 32px); overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .projects { grid-template-columns: minmax(0, 1fr); }
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .sheet { border-right: 0; border-bottom: 1px solid var(--rule); padding: 20px 16px; }
+  .sheet .legend { display: none; }
+  .map { min-height: 0; height: clamp(420px, 70vh, 640px); }
+  .profile { grid-template-columns: minmax(0, 1fr); }
+  .profile .label { border-right: 0; padding: 12px 16px 0; }
+  .stops { padding: 12px 16px; }
+  .station { grid-template-columns: minmax(0, 1fr); }
+  .card { top: auto; bottom: 0; right: 0; left: 0; width: 100%; max-height: 52%; border-radius: 12px 12px 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="wrap topbar">
+  <a class="wordmark" href="#" id="top">Alec</a>
+  <nav aria-label="Sections">
+    <a href="#projects">Projects</a>
+    <a href="#map-section">Map</a>
+    <a href="#about">About</a>
+    <a href="https://github.com/alecf">GitHub</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <div class="eyebrow">Product engineer</div>
+    <h1>Hi, I'm <em>Alec.</em></h1>
+    <p>Here's what I've been building lately.</p>
+  </section>
+
+  <section class="band" id="projects">
+    <div class="band-head">
+      <h2>Projects</h2>
+    </div>
+    <div class="projects" id="project-grid">
+
+<!--
+  ADDING A PROJECT: copy one <article> below, then edit it.
+    id            the project's link, e.g. alecf.github.io/#total-recall
+    data-status   open | rough | building | idea
+    data-started  YYYY-MM-DD (optional; puts its peak beside that stretch of the career on the map)
+    data-updated  YYYY-MM-DD (optional; refreshed from GitHub when data-repo is set)
+    data-commits  (optional; sets the peak's height)
+    data-repo     owner/name on GitHub (optional)
+    data-short    shorter name for the elevation profile (optional)
+  Everything inside is plain HTML: write whatever you like. The <h3> is the name on the map,
+  the first <p> becomes the map's trail note, and links in <p class="links"> show up there too.
+  Screenshots go in projects/<id>/.
+-->
+
+      <article class="proj" id="total-recall" data-status="open" data-started="2026-04-01" data-updated="2026-10-26" data-commits="157" data-repo="alecf/totalrecall">
+        <h3>Total Recall</h3>
+        <p class="stack">macOS menu bar app · Swift</p>
+        <p>A menu bar app that shows where your Mac's memory actually went. It groups processes by the app they belong to, and it knows how particular apps split themselves up, so Claude Code shows up session by session, labeled with the folder each one is working in. It lives by one rule: blue is RAM, amber is not.</p>
+        <figure>
+          <img src="projects/total-recall/main-window.png" alt="Total Recall's main window: the Memory River bar across the top, then app groups with sparklines and memory totals" width="780" height="560" loading="lazy">
+          <figcaption>The Memory River shows the gap between what an app is charged for and what's really in RAM. That gap is usually why a machine with "plenty of free memory" still feels slow.</figcaption>
+        </figure>
+        <p class="links"><a href="https://github.com/alecf/totalrecall">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="dr-creep" data-status="open" data-started="2026-08-22" data-updated="2026-10-26" data-commits="10" data-repo="alecf/dr-creep-in-zig" data-short="Dr. Creep">
+        <h3>Dr. Creep's Castle</h3>
+        <p class="stack">Zig · 6502 · WebAssembly</p>
+        <p>Software archaeology. I took the original 1984 Commodore 64 disk of The Castles of Dr. Creep and am working it from disk image to 6502 assembly to Zig, until it runs natively on a Mac and in the browser. It's how I learned Zig, and I wrote a tutorial as I went.</p>
+        <figure class="shots">
+          <img class="pixels" src="projects/dr-creep/its-alive.png" alt="A lone white character standing on a gray floor: the first frame the emulator drew" width="768" height="544" loading="lazy">
+          <img class="pixels" src="projects/dr-creep/hall.png" alt="The Entrance Hall room, with doors, a ladder, a pole and a bell" width="768" height="544" loading="lazy">
+          <figcaption>First signs of life, then the Entrance Hall, running on a from-scratch 6502 interpreter with original routines swapped out for native Zig one at a time.</figcaption>
+        </figure>
+        <p class="links"><a href="https://alecf.github.io/dr-creep-in-zig/game/">Play it ↗</a> <a href="https://alecf.github.io/dr-creep-in-zig/tutorial/">Tutorial ↗</a> <a href="https://github.com/alecf/dr-creep-in-zig">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="thicket" data-status="rough" data-started="2026-08-09" data-updated="2026-10-05" data-commits="107" data-repo="alecf/thicket">
+        <h3>Thicket</h3>
+        <p class="stack">CLI · TypeScript</p>
+        <p>A CLI that reads a TypeScript codebase and writes a plain-text report of duplication and tangled modules, made to be read by an LLM inside a refactoring loop.</p>
+        <pre><span class="c"># the loop</span>
+thicket report → LLM picks targets → LLM refactors → thicket report → …
+
+<span class="c"># try it</span>
+brew install alecf/tap/thicket
+thicket &gt; thicket.md</pre>
+        <p class="links"><a href="https://github.com/alecf/thicket">Repo ↗</a> <a href="https://alecf.github.io/thicket/report-guide.md">Field guide ↗</a></p>
+      </article>
+
+      <article class="proj" id="wled-pro" data-status="building" data-started="2025-12-19" data-updated="2026-10-27" data-commits="120" data-repo="alecf/wled-pro">
+        <h3>WLED Pro</h3>
+        <p class="stack">React · TypeScript · Vite · Bun</p>
+        <p>A new UI for WLED, the open source firmware that drives ESP32-based LED lighting controllers. It's served straight from the controller, with live state kept in sync through TanStack Query.</p>
+        <figure>
+          <img src="projects/wled-pro/split.png" alt="The Split Segment dialog, splitting a strip of 471 LEDs at position 385" width="1200" height="809" loading="lazy">
+          <figcaption>Splitting an LED strip into segments, with a snap-to-boundaries mode.</figcaption>
+        </figure>
+        <p class="links"><a href="https://github.com/alecf/wled-pro">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="photo-restore" data-status="open" data-started="2026-05-29" data-updated="2026-09-25" data-commits="26" data-repo="alecf/photo-restore-mac">
+        <h3>Photo Restore</h3>
+        <p class="stack">macOS app · Core ML</p>
+        <p>A small Mac app for old family-photo scans. Drag in a faded print or a whole folder and watch each one come back, with a before-and-after slider: auto-contrast, upscaling, and face restoration. It all runs on-device, so nothing leaves your Mac.</p>
+        <p>The heavy lifting is done by off-the-shelf models from Hugging Face, Real-ESRGAN for upscaling and GFPGAN for faces. It started as a Python command-line tool, then I rebuilt it as a native app with the same models converted to Core ML.</p>
+        <p class="links"><a href="https://alecf.github.io/photo-restore-mac/">Download ↗</a> <a href="https://github.com/alecf/photo-restore-mac">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="notes-to-web" data-status="rough" data-started="2026-08-03" data-updated="2026-08-04" data-commits="12" data-repo="alecf/notes-to-web">
+        <h3>notes-to-web</h3>
+        <p class="stack">macOS app</p>
+        <p>Publishes any Apple Note as a webpage, with its images, videos and other attachments right where they were in the note. You get a folder of static files to upload anywhere, or it can publish straight to Cloudflare for you.</p>
+        <pre>my-workout/
+├── index.html
+└── assets/
+    ├── style.css
+    ├── IMG_5167.mp4
+    ├── IMG_5167.poster.jpg
+    └── …</pre>
+        <p class="links"><a href="https://github.com/alecf/notes-to-web">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="heyman" data-status="open" data-started="2026-01-12" data-updated="2026-10-06" data-commits="24" data-repo="alecf/heyman">
+        <h3>hey, man!</h3>
+        <p class="stack">CLI · Go</p>
+        <p>Ask for a shell command in plain English and get one back. Before it answers, the model reads the man pages on your machine, so the flags match what you actually have installed.</p>
+        <pre><span class="c">$</span> heyman -- compress the logs directory into a tarball, excluding .tmp files
+tar --exclude='*.tmp' -czf logs.tar.gz logs
+
+<span class="c">$</span> heyman stat print the size in bytes and modification time of notes.txt
+stat -f "%z %Sm" notes.txt</pre>
+        <p>That second answer is the BSD <code>stat</code> that ships with macOS. On Linux you get GNU syntax, because the model read a different man page.</p>
+        <p class="links"><a href="https://alecf.github.io/heyman/">Evals ↗</a> <a href="https://github.com/alecf/heyman">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="queens" data-status="open" data-started="2026-02-28" data-updated="2026-04-07" data-commits="23" data-repo="alecf/queens">
+        <h3>Queens</h3>
+        <p class="stack">Web game · React · TypeScript</p>
+        <p>The Queens logic puzzle: one queen in every row, column and colored region, and no two queens touching. Boards from 5×5 to 9×9, tap to cycle a cell, drag to paint, hints when you're stuck, and a URL for every board so you can send one to a friend.</p>
+        <figure>
+          <img class="narrow" src="projects/queens/board.png" alt="A 7 by 7 Queens board divided into colored regions, with a few cells crossed out by hints" width="640" height="837" loading="lazy">
+          <figcaption>A 7×7 board, a few hints in.</figcaption>
+        </figure>
+        <p class="links"><a href="https://github.com/alecf/queens">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="pathforge" data-status="rough" data-started="2025-08-06" data-updated="2026-10-06" data-commits="56" data-repo="alecf/pathforge">
+        <h3>PathForge</h3>
+        <p class="stack">Next.js · three.js · Strava API</p>
+        <p>A bit of an art project. It takes your rides, runs and hikes from Strava and generates a 3D landscape from nothing but those paths, so you can see what the terrain would look like if the only thing that shaped it was where you've been.</p>
+        <p class="links"><a href="https://github.com/alecf/pathforge">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="meaning-maker" data-status="open" data-started="2023-04-17" data-updated="2026-10-20" data-commits="64" data-repo="alecf/meaning-maker" data-short="Meaning">
+        <h3>Meaning Maker</h3>
+        <p class="stack">Next.js · OpenAI embeddings</p>
+        <p>An experiment in semantic analysis. Paste in a document and it highlights which sentences add new meaning and which are just repeating what's already been said: the repeats fade, and the new ideas stay bright.</p>
+        <figure>
+          <p class="mm"><span style="opacity:1">Our app helps teams ship faster.</span> <span style="opacity:.3">It helps teams move quickly and ship sooner.</span> <span style="opacity:.42">Shipping fast matters to every team.</span> <span style="opacity:1">It also runs entirely offline, on any laptop.</span> <span style="opacity:.22">Teams ship faster with it.</span> <span style="opacity:.9">Pricing starts at zero.</span></p>
+          <figcaption>Roughly what it does to a pitch. Under the hood it compares embeddings of a rolling window of sentences.</figcaption>
+        </figure>
+        <p class="links"><a href="https://github.com/alecf/meaning-maker">Repo ↗</a></p>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="band" id="map-section">
+    <div class="band-head">
+      <h2>How I got here</h2>
+    </div>
+    <div class="hero">
+      <aside class="sheet">
+        <button class="btn" id="ride" type="button">Take the tour <span aria-hidden="true">→</span></button>
+        <dl class="legend" aria-label="Map legend">
+          <div><dt><svg width="18" height="16" viewBox="0 0 18 16" aria-hidden="true"><path d="M9 1 17 15H1Z" fill="var(--trail)"/></svg></dt><dd>Side project</dd></div>
+          <div><dt><svg width="18" height="20" viewBox="0 -4 18 20" overflow="visible" aria-hidden="true"><path d="M9 1V-6" stroke="var(--ink)" stroke-width="1.5"/><path d="M9.7 -6h6l-1.7 2 1.7 2h-6Z" fill="var(--ink)"/><path d="M9 1 17 15H1Z" fill="var(--trail)"/></svg></dt><dd>Worked on this month</dd></div>
+          <div><dt><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2.5"/></svg></dt><dd>Job</dd></div>
+          <div><dt><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="var(--spur)"/></svg></dt><dd>Detours and interests</dd></div>
+          <div><dt><svg width="26" height="8" viewBox="0 0 26 8" aria-hidden="true"><path d="M1 4H25" stroke="var(--trail)" stroke-width="3" stroke-dasharray="6 3"/></svg></dt><dd>Career</dd></div>
+          <div><dt><svg width="26" height="8" viewBox="0 0 26 8" aria-hidden="true"><path d="M1 4H25" stroke="var(--trail)" stroke-width="2" stroke-dasharray="3 3"/></svg></dt><dd>Trail up to a side project</dd></div>
+          <div class="fine"><dd>Contour interval 300 ft. Index contours every 1,500 ft. Terrain is procedurally generated, but each project's peak rises with its commit count.</dd></div>
+        </dl>
+        <p class="hint" id="hint">Drag to pan. Pinch or ⌘/Ctrl + scroll to zoom. Click anything that looks clickable.</p>
+      </aside>
+
+      <div class="map" id="map" tabindex="0" aria-label="Interactive trail map. Use arrow keys to pan and plus or minus to zoom.">
+        <canvas id="terrain"></canvas>
+        <div class="markers" id="markers"></div>
+        <div class="ctrl">
+          <button type="button" id="zin" aria-label="Zoom in">+</button>
+          <button type="button" id="zout" aria-label="Zoom out">−</button>
+          <button type="button" id="zfit" aria-label="Show the whole map">⤢</button>
+        </div>
+        <div class="readout" id="readout" aria-hidden="true">E 000.0 · N 000.0 · elev — ft</div>
+        <div class="coop" id="coop">Hold ⌘ or Ctrl to zoom</div>
+        <article class="card" id="card" hidden aria-live="polite"></article>
+      </div>
+
+      <div class="profile">
+        <div class="label">
+          <strong>Elevation</strong>
+          <span class="hint">Hover or drag to scrub.</span>
+        </div>
+        <canvas id="profile" aria-label="Elevation profile of the trail"></canvas>
+      </div>
+      <nav class="stops" id="stops" aria-label="All stops on the map"></nav>
+    </div>
+  </section>
+
+  <section class="band" id="about">
+    <div class="band-head">
+      <h2>About</h2>
+      
+    </div>
+    <div class="station">
+      <div class="bio">
+        <p>I'm a product engineer: I work across the whole stack, but what I love is shipping real, working products that people use. So I pay special attention to the parts they touch: the UI, how it feels to interact with, and making data readable through good visualization.</p>
+        <p>These days I'm at The General Partnership, where I embed with startups and help them get going: setting up how the team builds software, building the first proof of concept, and getting an early app ready for real users. My sweet spot is a team of 2 to 10 people getting a new company off the ground.</p>
+        <p>I've been at this for more than thirty years. I started at Netscape on the original Navigator browser, stayed through the early days of Mozilla, took a detour to teach high school math, and found my way back through Macromedia and OSAF, where I fell for Python. Then came Metaweb's graph database, which Google bought and turned into the Knowledge Graph. At Google I moved to Chrome, worked on IndexedDB, and was tech lead for Service Worker. After that I helped start UrbanFootprint, building geospatial tools for urban planners, which is a big part of why this site is a map.</p>
+        <p>Lately I'm loving AI-assisted development. I've always had more ideas than time, and a compulsion to make them real. Now I can build far more of them, far faster.</p>
+        <p>When I'm not coding I'm probably on a bike (mountain, road, or loaded up for a bikepacking trip), reading comics, watching a movie, playing a board game, or cheering for the Valkyries.</p>
+      </div>
+      <div>
+        <div class="photo">Photo goes here<br>(Alec is finding one)</div>
+        <dl class="facts-table">
+          <div><dt>Now</dt><dd>The General Partnership</dd></div>
+          <div><dt>Focus</dt><dd>Full-stack product work, especially UI, interaction and data viz</dd></div>
+          <div><dt>Before</dt><dd>UrbanFootprint, Google (Chrome, Knowledge Graph, Consumer Surveys), Metaweb, OSAF, Macromedia, Mozilla, Netscape</dd></div>
+          <div><dt>School</dt><dd>Carnegie Mellon</dd></div>
+          <div><dt>Web standards</dt><dd>IndexedDB and Service Worker</dd></div>
+          <div><dt>Languages</dt><dd>C/C++, then Python and JavaScript, lately TypeScript and Zig</dd></div>
+          <div><dt>Off the clock</dt><dd>Mountain, road &amp; bikepacking, the outdoors, comics, board games, 3D printing, economics, movies, WNBA</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links" id="links"></div>
+    <small>Map terrain is procedurally generated from seed 1994.</small>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(() => {
+"use strict";
+
+// ------------------------------------------------------------------ content
+// Projects are the <article class="proj"> blocks above. Career waypoints are fixed here.
+// Map units: x runs 0–2400 east, y runs 0–1600 south. The readout shows E = x/10, N = (1600 - y)/10.
+const CAREER = [
+  { id: "cmu", name: "Carnegie Mellon", short: "CMU", meta: "1990s", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Carnegie_Mellon_University"]], at: [[170, 1460]],
+    body: ["I went to Carnegie Mellon in the '90s."] },
+  { id: "netscape", name: "Netscape", meta: "Navigator · Mail · C/C++", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Netscape_Navigator"]], at: [[260, 1400], [370, 1310]],
+    body: ["I worked on the original Navigator browser and on the mail client, and played a small part in open-sourcing the code that became Mozilla."] },
+  { id: "mozilla", name: "Mozilla", meta: "C/C++ · a few years", links: [["mozilla.org", "https://www.mozilla.org/"]], at: [[420, 1220], [340, 1160], [290, 1090]],
+    body: ["Then a few years working on Mozilla itself, mostly in C and C++."] },
+  { id: "macromedia", name: "Macromedia", meta: "Tech writer · six months", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Macromedia"]], at: [[330, 1010], [420, 990], [500, 940]],
+    body: ["Six months as a tech writer at Macromedia, writing the developer docs for the predecessor to Adobe AIR, before going fully back to engineering."] },
+  { id: "osaf", name: "OSAF", meta: "Open Source Applications Foundation · Python", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Open_Source_Applications_Foundation"], ["Chandler", "https://en.wikipedia.org/wiki/Chandler_(software)"]], at: [[520, 860], [440, 820], [420, 740]],
+    body: ["At the Open Source Applications Foundation we shipped a mail and calendar app built to take on Outlook. It's where I learned Python, and where I fell in love with it."] },
+  { id: "metaweb", name: "Metaweb", meta: "Graph database · Python · JavaScript", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Metaweb"]], at: [[480, 670], [540, 630], [620, 620]],
+    body: ["Metaweb built a graph database. I wrote Python and JavaScript on the public API server and the frontend, including a dynamic UI generated from the data in the graph itself."] },
+  { id: "knowledge-graph", name: "Google: Knowledge Graph", short: "Knowledge Graph", meta: "Data pipelines", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Google_Knowledge_Graph"]], at: [[700, 680], [790, 730]],
+    body: ["Google bought Metaweb, and it became Google's Knowledge Graph. I built the data pipelines that carried Metaweb's data out to the rest of Google."] },
+  { id: "chrome", name: "Google: Chrome", short: "Chrome", meta: "IndexedDB · Service Worker · W3C", links: [["IndexedDB", "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API"], ["Service Worker", "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API"]], at: [[870, 680], [960, 610]],
+    body: ["On Chrome I worked on the IndexedDB implementation, and a bit on the standard as it evolved at the W3C.",
+      "Then I was the tech lead for Service Worker in Chrome, working with Mozilla to figure out what it should be."] },
+  { id: "surveys", name: "Google: Consumer Surveys", short: "Surveys", meta: "Market research", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Google_Surveys"]], at: [[1050, 650], [1080, 730], [1110, 810]],
+    body: ["Google Consumer Surveys: market research that gave sites a way to earn revenue other than ads."] },
+  { id: "urbanfootprint", name: "UrbanFootprint", meta: "Geospatial · urban planning", links: [["urbanfootprint.com", "https://urbanfootprint.com/"]], at: [[1070, 900], [1010, 960], [990, 1050]],
+    body: ["I left Google to help start UrbanFootprint, an urban planning app built around geospatial workflows for planners and developers. Lots of maps."] },
+  { id: "tgp", name: "The General Partnership", short: "TGP", meta: "Now", links: [["thegp.com", "https://www.thegp.com/"]], at: [[1060, 1120], [1150, 1130], [1250, 1150]],
+    body: ["Where I am now. I've been embedded with many startups, helping them bootstrap: setting up how the team builds software, building first proofs of concept, and getting early apps into production.",
+      "My sweet spot is teams of 2 to 10 people getting a new company off the ground."] },
+];
+const TRAIL_END = { id: "next", kind: "career", name: "Today", meta: "Now", x: 2200, y: 380,
+  body: ["Still at The General Partnership, and still starting side projects. The latest are at the top of the page."], links: [["Projects", "#projects"]] };
+// The career trail through the TGP years, out to today.
+const MAIN_TAIL = [[1420, 1190], [1620, 1170], [1820, 1100], [1980, 980], [2090, 820], [2160, 640], [2190, 500]];
+
+const HOBBIES = [
+  { id: "math-class", name: "Teaching", tag: "Detour", meta: "High school math", glyph: "pi", x: 120, y: 1010,
+    body: ["Between Mozilla and Macromedia I took time off to become a high school math teacher. It wasn't for me."] },
+  { id: "overnighter", name: "Bikepacking", meta: "Outdoors", glyph: "loop", x: 330, y: 430,
+    body: ["Bikepacking trips, when I can get away for a few days."] },
+  { id: "singletrack", name: "Mountain biking", meta: "Outdoors", glyph: "bike", x: 1060, y: 1380,
+    body: ["Mountain biking, as often as I can."] },
+  { id: "switchbacks", name: "Road riding", meta: "Outdoors", glyph: "road", x: 1880, y: 1360,
+    body: ["Road riding too."] },
+  { id: "valkyries", name: "Valkyries", meta: "WNBA", glyph: "ball", x: 2250, y: 1000,
+    body: ["A new Golden State Valkyries fan."] },
+  { id: "drive-in", name: "Movies", meta: "Interests", glyph: "film", x: 600, y: 1440,
+    body: ["Big movie fan. Happy to give recommendations."] },
+  { id: "comic-shop", name: "Comics", meta: "Interests", glyph: "bubble", x: 800, y: 1250,
+    body: ["I read a lot of comics."] },
+  { id: "game-hut", name: "Board games", meta: "Interests", glyph: "meeple", x: 1420, y: 1380,
+    body: ["Board games, the heavier the better."] },
+  { id: "print-shop", name: "3D printing", meta: "Interests", glyph: "cube", x: 1200, y: 300,
+    body: ["Dabbling in 3D printing."] },
+];
+
+const LINKS = [
+  ["GitHub", "https://github.com/alecf"],
+  ["LinkedIn", null],  // TODO: Alec's LinkedIn URL
+  ["Bluesky", null],   // TODO: Alec's Bluesky URL
+];
+
+const STATUS = {
+  open: ["open", "Live"],
+  rough: ["rough", "Early"],
+  building: ["building", "In progress"],
+  idea: ["idea", "Idea"],
+};
+
+// ------------------------------------------------------------------ helpers
+const W = 2400, H = 1600, STEP = 8, NX = W / STEP + 1, NY = H / STEP + 1;
+const WATER = 0.13, LEVELS = 30, PER_SEG = 24;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmtDate = d => new Date(d + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function mulberry32(a) {
+  return () => {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+const LAT = 64, lattice = Float32Array.from({ length: LAT * LAT }, mulberry32(1994));
+const fade = t => t * t * (3 - 2 * t);
+function noise(x, y) {
+  const xi = Math.floor(x), yi = Math.floor(y), fx = fade(x - xi), fy = fade(y - yi);
+  const v = (i, j) => lattice[((j & (LAT - 1)) * LAT) + (i & (LAT - 1))];
+  const a = v(xi, yi), b = v(xi + 1, yi), c = v(xi, yi + 1), d = v(xi + 1, yi + 1);
+  return a + (b - a) * fx + (c - a) * fy + (a - b - c + d) * fx * fy;
+}
+function fbm(x, y) {
+  let sum = 0, amp = 0.5, f = 1;
+  for (let o = 0; o < 5; o++) { sum += amp * noise(x * f, y * f); f *= 2.03; amp *= 0.5; }
+  return sum;
+}
+
+// Dense polyline along a Catmull-Rom spline.
+function spline(points, perSeg = PER_SEG, closed = false) {
+  const out = [], n = points.length;
+  const P = k => closed ? points[(k + n) % n] : points[Math.max(0, Math.min(n - 1, k))];
+  const segs = closed ? n : n - 1;
+  for (let k = 0; k < segs; k++) {
+    const p0 = P(k - 1), p1 = P(k), p2 = P(k + 1), p3 = P(k + 2);
+    for (let s = 0; s < perSeg; s++) {
+      const t = s / perSeg, t2 = t * t, t3 = t2 * t;
+      const f = (a, b, c, d) => 0.5 * ((2 * b) + (-a + c) * t + (2 * a - 5 * b + 4 * c - d) * t2 + (-a + 3 * b - 3 * c + d) * t3);
+      out.push([f(p0[0], p1[0], p2[0], p3[0]), f(p0[1], p1[1], p2[1], p3[1])]);
+    }
+  }
+  out.push(closed ? out[0] : [points[n - 1][0], points[n - 1][1]]);
+  return out;
+}
+const toPath = pts => { const p = new Path2D(); pts.forEach((q, k) => k ? p.lineTo(q[0], q[1]) : p.moveTo(q[0], q[1])); return p; };
+
+// ------------------------------------------------------------------ projects, read from the page
+const projectEls = [...document.querySelectorAll("#project-grid > .proj")];
+const PROJECTS = projectEls.map(el => {
+  const d = el.dataset, h = el.querySelector("h3"), stack = el.querySelector(".stack");
+  const firstP = el.querySelector(":scope > p:not(.stack):not(.links)");
+  return {
+    el, slug: el.id, name: h ? h.textContent.trim() : el.id, short: d.short,
+    status: STATUS[d.status] ? d.status : "open", started: d.started, updated: d.updated,
+    commits: Number(d.commits) || 0, repo: d.repo,
+    stack: stack ? stack.textContent.trim() : "",
+    summary: firstP ? firstP.textContent.trim() : "",
+    links: [...el.querySelectorAll(".links a")].map(a => [a.textContent.replace("↗", "").trim(), a.getAttribute("href")]),
+  };
+});
+
+// ------------------------------------------------------------------ trails
+// Dense polyline + cumulative arc length, so things can be placed by distance along a trail.
+function trail(points, perSeg = PER_SEG) {
+  const pts = spline(points, perSeg), arc = [0];
+  for (let k = 1; k < pts.length; k++) arc.push(arc[k - 1] + Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]));
+  return { pts, arc, total: arc[arc.length - 1] };
+}
+function along(t, s) {
+  s = Math.max(0, Math.min(t.total, s));
+  let lo = 0, hi = t.arc.length - 1;
+  while (hi - lo > 1) { const m = (lo + hi) >> 1; if (t.arc[m] < s) lo = m; else hi = m; }
+  const f = (s - t.arc[lo]) / ((t.arc[hi] - t.arc[lo]) || 1), a = t.pts[lo], b = t.pts[hi];
+  return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+}
+function nearestIndex(pts, x, y) {
+  let best = 0, bd = Infinity;
+  for (let k = 0; k < pts.length; k++) { const d = (pts[k][0] - x) ** 2 + (pts[k][1] - y) ** 2; if (d < bd) { bd = d; best = k; } }
+  return best;
+}
+
+// The career trail visits each stop in order and ends at today.
+const ROUTE = [];
+for (const c of CAREER) {
+  c.kind = "career";
+  c.at.forEach((p, k) => ROUTE.push(k === c.at.length - 1 ? [p[0], p[1], c.id] : p));
+  [c.x, c.y] = c.at[c.at.length - 1];
+}
+ROUTE.push(...MAIN_TAIL, [TRAIL_END.x, TRAIL_END.y, TRAIL_END.id]);
+const STOPS = [...CAREER, TRAIL_END];
+const CAREER_TRAIL = trail(ROUTE), route = CAREER_TRAIL.pts, arc = CAREER_TRAIL.arc, TOTAL = CAREER_TRAIL.total;
+ROUTE.forEach((p, k) => { if (p[2]) STOPS.find(st => st.id === p[2]).s = arc[k * PER_SEG]; });
+const ROUTE_PATH = toPath(route);
+const pointAt = s => along(CAREER_TRAIL, s);
+const nearestOnRoute = (x, y) => route[nearestIndex(route, x, y)];
+
+// Rough start years for each career stop, so a project can sit beside the stretch of career it grew up next to.
+const ERA = { cmu: 1990, netscape: 1995, mozilla: 1998.5, macromedia: 2004, osaf: 2004.5, metaweb: 2007.5,
+  "knowledge-graph": 2010.5, chrome: 2011.5, surveys: 2015, urbanfootprint: 2016.5, tgp: 2021 };
+const yearOf = d => { const t = new Date(d + "T12:00:00"); return t.getFullYear() + t.getMonth() / 12 + t.getDate() / 365; };
+function careerSAt(year) {
+  const pts = [...CAREER.map(c => [ERA[c.id] ?? 0, c.s]), [yearOf(new Date().toISOString().slice(0, 10)), TOTAL]];
+  for (let k = 1; k < pts.length; k++) if (year <= pts[k][0]) {
+    const [y0, s0] = pts[k - 1], [y1, s1] = pts[k];
+    return s0 + (s1 - s0) * Math.max(0, (year - y0) / ((y1 - y0) || 1));
+  }
+  return TOTAL;
+}
+const hash = str => [...str].reduce((h, c) => Math.imul(h ^ c.charCodeAt(0), 16777619), 2166136261);
+
+// Projects are a range of peaks off to the side of the career trail, near when each one started,
+// each scattered to whichever nearby spot leaves the most room. A short spur leads up from the trail.
+const peaksList = [], ACTIVE_DAYS = 30;
+{
+  const others = [...HOBBIES.map(h => [h.x, h.y]), ...STOPS.map(st => [st.x, st.y])];
+  const ordered = [...PROJECTS].sort((a, b) => (a.started || "9999").localeCompare(b.started || "9999"));
+  for (const p of ordered) {
+    const r = mulberry32(hash(p.slug)), s0 = p.started ? careerSAt(yearOf(p.started)) : TOTAL - 200;
+    let best = null, bestScore = -Infinity;
+    for (let k = 0; k < 120; k++) {
+      const s = Math.max(60, Math.min(TOTAL - 40, s0 - r() * 900));
+      const [ax, ay] = pointAt(s), [bx, by] = pointAt(s + 5), len = Math.hypot(bx - ax, by - ay) || 1;
+      const d = 160 + r() * 420, x = ax + (by - ay) / len * d, y = ay - (bx - ax) / len * d;  // left of the direction of travel
+      if (x < 90 || x > W - 120 || y < 90 || y > H - 90) continue;
+      const near = (list, x, y) => list.reduce((m, q) => Math.min(m, Math.hypot(q[0] - x, q[1] - y)), Infinity);
+      const [qx, qy] = nearestOnRoute(x, y);
+      const score = Math.min(near(peaksList.map(pk => [pk.x, pk.y]), x, y) / 220, Math.hypot(qx - x, qy - y) / 150, near(others, x, y) / 130, 1)
+        - Math.abs(s - s0) / 9000;
+      if (score > bestScore) { bestScore = score; best = [x, y]; }
+    }
+    const [x, y] = best || pointAt(s0);
+    const since = p.started ? "Since " + new Date(p.started + "T12:00:00").toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "";
+    const active = p.updated && (Date.now() - new Date(p.updated + "T12:00:00")) / 864e5 <= ACTIVE_DAYS;
+    // Its spur leaves the career trail somewhere around when it started.
+    const k0 = route.findIndex((_, k) => arc[k] >= s0 - 900), k1 = nearestIndex(route.slice(k0), x, y) + k0;
+    peaksList.push({ id: p.slug, kind: "peak", name: p.name, short: p.short, x, y, project: p, active,
+      s: arc[k1], trailhead: route[k1],
+      meta: [p.stack, since].filter(Boolean).join(" · "), body: p.summary ? [p.summary] : [], links: p.links });
+  }
+}
+const stopById = Object.fromEntries([...STOPS, ...peaksList].map(s => [s.id, s]));
+
+// ------------------------------------------------------------------ terrain
+const grid = new Float32Array(NX * NY);
+{
+  const bumps = peaksList.flatMap(pk => [[pk.x, pk.y, 0.1 + 0.07 * Math.log10((pk.project.commits || 20) + 1), 85], [pk.x, pk.y, 0.05, 210]]);
+  let lo = Infinity, hi = -Infinity;
+  for (let j = 0; j < NY; j++) for (let i = 0; i < NX; i++) {
+    const x = i * STEP, y = j * STEP;
+    let h = fbm(x / 430 + 3.1, y / 430 + 7.7) * 0.5;
+    h += 0.16 * (x / W) + 0.14 * (1 - y / H);                     // the career climbs to the northeast
+    for (const [px, py, amp, r] of bumps) h += amp * Math.exp(-((x - px) ** 2 + (y - py) ** 2) / (2 * r * r));
+    h -= 0.42 * Math.exp(-((x - 330) ** 2 + (y - 430) ** 2) / (2 * 95 * 95)); // a lake for the bikepacking loop
+    grid[j * NX + i] = h; lo = Math.min(lo, h); hi = Math.max(hi, h);
+  }
+  for (let k = 0; k < grid.length; k++) grid[k] = (grid[k] - lo) / (hi - lo);
+}
+function heightAt(x, y) {
+  const gx = Math.max(0, Math.min(NX - 1.001, x / STEP)), gy = Math.max(0, Math.min(NY - 1.001, y / STEP));
+  const i = Math.floor(gx), j = Math.floor(gy), fx = gx - i, fy = gy - j;
+  const a = grid[j * NX + i], b = grid[j * NX + i + 1], c = grid[(j + 1) * NX + i], d = grid[(j + 1) * NX + i + 1];
+  return a + (b - a) * fx + (c - a) * fy + (a - b - c + d) * fx * fy;
+}
+const feet = h => Math.round(400 + h * 9000);
+
+// Marching squares into Path2Ds: regular contours, index contours (every fifth), shoreline.
+const CONTOURS = (() => {
+  const reg = new Path2D(), idx = new Path2D(), shore = new Path2D(), levels = [];
+  for (let l = 1; l < LEVELS; l++) levels.push([l / LEVELS, l % 5 === 0 ? idx : reg]);
+  levels.push([WATER, shore]);
+  for (const [lv, path] of levels) {
+    for (let j = 0; j < NY - 1; j++) for (let i = 0; i < NX - 1; i++) {
+      const a = grid[j * NX + i], b = grid[j * NX + i + 1], c = grid[(j + 1) * NX + i + 1], d = grid[(j + 1) * NX + i];
+      const code = (a > lv ? 8 : 0) | (b > lv ? 4 : 0) | (c > lv ? 2 : 0) | (d > lv ? 1 : 0);
+      if (code === 0 || code === 15) continue;
+      const x0 = i * STEP, y0 = j * STEP;
+      const T = () => [x0 + STEP * (lv - a) / (b - a), y0];
+      const R = () => [x0 + STEP, y0 + STEP * (lv - b) / (c - b)];
+      const B = () => [x0 + STEP * (lv - d) / (c - d), y0 + STEP];
+      const L = () => [x0, y0 + STEP * (lv - a) / (d - a)];
+      const seg = (p, q) => { path.moveTo(p[0], p[1]); path.lineTo(q[0], q[1]); };
+      switch (code) {
+        case 1: case 14: seg(L(), B()); break;
+        case 2: case 13: seg(B(), R()); break;
+        case 3: case 12: seg(L(), R()); break;
+        case 4: case 11: seg(T(), R()); break;
+        case 6: case 9: seg(T(), B()); break;
+        case 7: case 8: seg(T(), L()); break;
+        case 5: seg(T(), R()); seg(L(), B()); break;
+        case 10: seg(T(), L()); seg(B(), R()); break;
+      }
+    }
+  }
+  return { reg, idx, shore };
+})();
+
+// Side trails: a wiggly spur from the nearest point on the main trail.
+// Project spurs: a switchbacking climb from the nearest point on the career trail up to each peak.
+const climbs = new Path2D(), climbPts = [];
+for (const pk of peaksList) {
+  const [sx, sy] = pk.trailhead, dx = pk.x - sx, dy = pk.y - sy, len = Math.hypot(dx, dy);
+  const nx = -dy / len, ny = dx / len, pts = [[sx, sy]];
+  for (let b = 1; b <= 3; b++) pts.push([sx + dx * b / 4 + nx * 30 * (b % 2 ? 1 : -1), sy + dy * b / 4 + ny * 30 * (b % 2 ? 1 : -1)]);
+  pts.push([pk.x, pk.y]);
+  const line = spline(pts, 12);
+  climbs.addPath(toPath(line)); climbPts.push(...line);
+}
+
+const spurs = new Path2D();
+for (const h of HOBBIES) {
+  if (h.id === "overnighter") {
+    const loop = [];
+    for (let k = 0; k < 9; k++) { const a = k / 9 * Math.PI * 2, r = 150 + 22 * Math.sin(a * 3); loop.push([330 + Math.cos(a) * r * 1.25, 430 + Math.sin(a) * r]); }
+    spurs.addPath(toPath(spline(loop, 16, true)));
+    h.x = loop[2][0]; h.y = loop[2][1];
+  }
+  const [sx, sy] = nearestOnRoute(h.x, h.y);
+  const dx = h.x - sx, dy = h.y - sy, len = Math.hypot(dx, dy);
+  if (len < 20) continue;
+  const nx = -dy / len, ny = dx / len, pts = [[sx, sy]];
+  const bends = h.glyph === "road" ? 6 : 2;
+  for (let b = 1; b <= bends; b++) {
+    const t = b / (bends + 1), w = (h.glyph === "road" ? 38 : 26) * (b % 2 ? 1 : -1);
+    pts.push([sx + dx * t + nx * w, sy + dy * t + ny * w]);
+  }
+  pts.push([h.x, h.y]);
+  spurs.addPath(toPath(spline(pts, 12)));
+}
+
+// The thicket around Thicket peak, if it's on the map.
+const trees = [];
+if (stopById.thicket) {
+  const r = mulberry32(42), t = stopById.thicket;
+  for (let k = 0; k < 220; k++) {
+    const a = r() * Math.PI * 2, d = Math.sqrt(r()) * 120, x = t.x + Math.cos(a) * d * 1.2, y = t.y + Math.sin(a) * d;
+    const [qx, qy] = nearestOnRoute(x, y);
+    const clear = Math.hypot(qx - x, qy - y) > 16 && climbPts.every(([lx, ly]) => Math.hypot(lx - x, ly - y) > 16);
+    if (clear && Math.hypot(x - t.x, y - t.y) > 30) trees.push([x, y, 4 + r() * 4]);
+  }
+}
+
+// ------------------------------------------------------------------ theme-aware terrain tint
+const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+function rgb(hex) {
+  const m = hex.replace("#", "");
+  const v = m.length === 3 ? m.split("").map(c => parseInt(c + c, 16)) : [0, 2, 4].map(k => parseInt(m.slice(k, k + 2), 16));
+  return v.some(Number.isNaN) ? [128, 128, 128] : v;
+}
+const COLORS = {};
+let tint = null;
+function readTheme() {
+  for (const k of ["paper", "sheet", "ink", "muted", "rule", "contour", "contour-index", "trail", "spur", "water", "water-edge", "terrain-lo", "terrain-hi", "shade", "tree"]) COLORS[k] = css("--" + k);
+  const lo = rgb(COLORS["terrain-lo"]), hi = rgb(COLORS["terrain-hi"]), water = rgb(COLORS.water), shade = rgb(COLORS.shade);
+  const dark = (lo[0] + lo[1] + lo[2]) < 200;
+  tint = document.createElement("canvas"); tint.width = NX; tint.height = NY;
+  const tc = tint.getContext("2d"), img = tc.createImageData(NX, NY);
+  for (let j = 0; j < NY; j++) for (let i = 0; i < NX; i++) {
+    const h = grid[j * NX + i], o = (j * NX + i) * 4;
+    const hx = grid[j * NX + Math.min(NX - 1, i + 1)] - grid[j * NX + Math.max(0, i - 1)];
+    const hy = grid[Math.min(NY - 1, j + 1) * NX + i] - grid[Math.max(0, j - 1) * NX + i];
+    const light = Math.max(-1, Math.min(1, (hx + hy) * 14));        // lit from the northwest
+    let c;
+    if (h < WATER) c = water;
+    else { const t = Math.min(1, (h - WATER) / 0.7); c = lo.map((v, k) => v + (hi[k] - v) * t); }
+    const s = h < WATER ? 0 : light * (dark ? 0.35 : 0.22);
+    for (let k = 0; k < 3; k++) img.data[o + k] = s > 0 ? c[k] + (shade[k] - c[k]) * s : c[k] + (255 * (dark ? 0.05 : 1) - c[k]) * -s * (dark ? 1 : 0.6);
+    img.data[o + 3] = 255;
+  }
+  tc.putImageData(img, 0, 0);
+}
+
+// Paints terrain, trees, trails and the rider in map units; the caller sets the transform.
+function paintWorld(c, s, opts = {}) {
+  c.imageSmoothingEnabled = true;
+  c.drawImage(tint, 0, 0, NX, NY, 0, 0, W + STEP, H + STEP);
+  c.lineCap = "round"; c.lineJoin = "round";
+  c.strokeStyle = COLORS.contour; c.globalAlpha = 0.55; c.lineWidth = 0.7 / s; c.stroke(CONTOURS.reg);
+  c.strokeStyle = COLORS["contour-index"]; c.globalAlpha = 0.8; c.lineWidth = 1.3 / s; c.stroke(CONTOURS.idx);
+  c.strokeStyle = COLORS["water-edge"]; c.globalAlpha = 1; c.lineWidth = 1.4 / s; c.stroke(CONTOURS.shore);
+  c.fillStyle = COLORS.tree; c.globalAlpha = 0.75;
+  for (const [x, y, r] of trees) { c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fill(); }
+  c.globalAlpha = 1;
+  if (opts.graticule) {
+    c.strokeStyle = COLORS.ink; c.globalAlpha = 0.07; c.lineWidth = 1 / s; c.beginPath();
+    for (let x = 200; x < W; x += 200) { c.moveTo(x, 0); c.lineTo(x, H); }
+    for (let y = 200; y < H; y += 200) { c.moveTo(0, y); c.lineTo(W, y); }
+    c.stroke(); c.globalAlpha = 1;
+  }
+  c.strokeStyle = COLORS.spur; c.lineWidth = 3 / s; c.setLineDash([0.1 / s, 5 / s]); c.stroke(spurs);
+  c.setLineDash([]);
+  c.strokeStyle = COLORS.paper; c.globalAlpha = 0.8; c.lineWidth = 8 / s; c.stroke(ROUTE_PATH); c.globalAlpha = 1;
+  c.strokeStyle = COLORS.paper; c.globalAlpha = 0.8; c.lineWidth = 6 / s; c.stroke(climbs); c.globalAlpha = 1;
+  c.strokeStyle = COLORS.trail; c.lineWidth = 2.2 / s; c.setLineDash([3 / s, 4 / s]); c.stroke(climbs);
+  c.lineWidth = 3 / s; c.setLineDash([9 / s, 5 / s]); c.stroke(ROUTE_PATH);
+  c.setLineDash([]);
+  if (opts.traveled > 0) {
+    c.beginPath(); const steps = Math.ceil(opts.traveled / 6);
+    for (let k = 0; k <= steps; k++) { const p = pointAt(opts.traveled * k / steps); k ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1]); }
+    c.lineWidth = 4 / s; c.stroke();
+  }
+  if (opts.rider != null) {
+    const [x, y] = pointAt(opts.rider);
+    c.fillStyle = COLORS.trail; c.beginPath(); c.arc(x, y, 9 / s, 0, Math.PI * 2); c.fill();
+    c.strokeStyle = COLORS.paper; c.lineWidth = 3 / s; c.stroke();
+  }
+}
+
+// ------------------------------------------------------------------ project cards
+const factsLine = p => [
+  p.started && `Started ${fmtDate(p.started)}`,
+  p.updated && `last worked on ${fmtDate(p.updated)}`,
+  p.commits && `${p.commits} commits`,
+].filter(Boolean).join(" · ");
+for (const pk of peaksList) {
+  const p = pk.project, el = p.el, [dot, label] = STATUS[p.status];
+  const body = document.createElement("div"); body.className = "body";
+  body.append(...el.childNodes);
+  el.append(body);
+  body.insertAdjacentHTML("afterbegin", `<span class="status"><span class="dot ${dot}"></span>${label}</span>`);
+  let links = body.querySelector(".links");
+  if (!links) { links = document.createElement("p"); links.className = "links"; body.append(links); }
+  const facts = factsLine(p);
+  if (facts) links.insertAdjacentHTML("beforebegin", `<p class="facts">${facts}</p>`);
+  links.insertAdjacentHTML("beforeend", `<button type="button" class="linkbtn" data-find="${esc(p.slug)}">Find it on the map</button>
+    <button type="button" class="linkbtn share" data-share="${esc(p.slug)}">Copy link</button>`);
+}
+let toastTimer = 0;
+function toast(msg) {
+  const t = $("toast"); t.textContent = msg; t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 2400);
+}
+$("project-grid").addEventListener("click", e => {
+  const m = e.target.closest("[data-find]"), sh = e.target.closest("[data-share]");
+  if (m) { $("map-section").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); go(m.dataset.find); }
+  if (sh) {
+    const url = location.origin + location.pathname + "#" + sh.dataset.share;
+    const fallback = () => toast(url);
+    try { navigator.clipboard.writeText(url).then(() => toast("Copied " + url), fallback); } catch { fallback(); }
+  }
+});
+
+// ------------------------------------------------------------------ map view
+const mapEl = $("map"), cv = $("terrain"), ctx = cv.getContext("2d");
+const markersEl = $("markers"), readout = $("readout");
+let cw = 0, ch = 0, dpr = 1, fit = 1;
+const view = { s: 1, tx: 0, ty: 0 };
+let rider = null, traveled = 0, dirty = true, activeId = null;
+
+function resize() {
+  const r = mapEl.getBoundingClientRect(), first = cw === 0;
+  const cx = (cw / 2 - view.tx) / view.s, cy = (ch / 2 - view.ty) / view.s, rel = view.s / fit;
+  cw = r.width; ch = r.height; dpr = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = Math.round(cw * dpr); cv.height = Math.round(ch * dpr);
+  fit = Math.max(cw / W, ch / H) * (cw < 600 ? 1.15 : 1);
+  if (first) setView(W * 0.52, H * 0.52, fit);
+  else setView(cx, cy, fit * rel);
+  sizeProfile();
+}
+function clampView() {
+  const ww = W * view.s, hh = H * view.s, pad = 40;
+  view.tx = ww + pad * 2 <= cw ? (cw - ww) / 2 : Math.min(pad, Math.max(cw - ww - pad, view.tx));
+  view.ty = hh + pad * 2 <= ch ? (ch - hh) / 2 : Math.min(pad, Math.max(ch - hh - pad, view.ty));
+}
+const minS = () => Math.min(cw / W, ch / H) * 0.95, maxS = () => fit * 5;
+function setView(cx, cy, s) {
+  view.s = Math.max(minS(), Math.min(maxS(), s));
+  view.tx = cw / 2 - cx * view.s; view.ty = ch / 2 - cy * view.s;
+  clampView(); dirty = true;
+}
+function zoomAt(px, py, factor) {
+  const s = Math.max(minS(), Math.min(maxS(), view.s * factor));
+  const wx = (px - view.tx) / view.s, wy = (py - view.ty) / view.s;
+  view.s = s; view.tx = px - wx * s; view.ty = py - wy * s; clampView(); dirty = true;
+}
+const center = () => [(cw / 2 - view.tx) / view.s, (ch / 2 - view.ty) / view.s];
+
+function draw() {
+  const { s, tx, ty } = view;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = COLORS.paper; ctx.fillRect(0, 0, cw, ch);
+  ctx.setTransform(dpr * s, 0, 0, dpr * s, dpr * tx, dpr * ty);
+  paintWorld(ctx, s, { graticule: true, traveled, rider });
+
+  // edge ticks in screen space
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = COLORS.muted; ctx.font = "10px " + css("--font-mono");
+  ctx.textBaseline = "top";
+  for (let x = 200; x < W; x += 200) { const px = x * s + tx; if (px > 50 && px < cw - 30) ctx.fillText(String(x / 10).padStart(3, "0"), px + 3, 4); }
+  ctx.textBaseline = "alphabetic";
+  for (let y = 200; y < H; y += 200) { const py = y * s + ty; if (py > 130 && py < ch - 40) ctx.fillText(String((H - y) / 10).padStart(3, "0"), cw - 26, py - 3); }
+
+  for (const el of markerEls) el.style.transform = `translate(${el._x * s + tx}px, ${el._y * s + ty}px) translateY(-50%)`;
+  if (s !== labelScale) placeLabels(s);
+  mapEl.classList.toggle("close", s > fit * 1.6);
+  drawProfile();
+}
+// Project labels go on whichever side of their peak overlaps the other labels least.
+let labelScale = 0;
+function placeLabels(s) {
+  labelScale = s;
+  const box = (el, left) => {
+    const w = el._w ??= el.querySelector(".lbl").offsetWidth, x = el._x * s, y = el._y * s;
+    return left ? [x - 14 - w, y - 10, x + 11, y + 10] : [x - 11, y - 10, x + 14 + w, y + 10];
+  };
+  const overlap = (a, b) => Math.max(0, Math.min(a[2], b[2]) - Math.max(a[0], b[0])) * Math.max(0, Math.min(a[3], b[3]) - Math.max(a[1], b[1]));
+  const fixed = markerEls.filter(el => el.classList.contains("career")).map(el => box(el, false));
+  const peaks = markerEls.filter(el => el.classList.contains("peak"));
+  const side = new Map(peaks.map(el => [el, false]));
+  const cost = (el, left) => [...fixed, ...peaks.filter(o => o !== el).map(o => box(o, side.get(o)))].reduce((t, o) => t + overlap(box(el, left), o), 0);
+  for (let pass = 0; pass < 4; pass++) for (const el of peaks) side.set(el, cost(el, true) < cost(el, false) - 1);
+  for (const el of peaks) el.classList.toggle("flip", side.get(el));
+}
+function frame() { if (dirty) { dirty = false; draw(); } requestAnimationFrame(frame); }
+
+// ------------------------------------------------------------------ markers
+const GLYPHS = {
+  peak: '<svg width="22" height="20" viewBox="0 0 22 20"><path d="M11 1.5 20.5 18.5H1.5Z" fill="var(--trail)" stroke="var(--paper)" stroke-width="2"/></svg>',
+  activePeak: '<svg width="22" height="20" viewBox="0 0 22 20" overflow="visible"><path d="M11 2V-9" stroke="var(--ink)" stroke-width="1.6"/><path d="M11.8 -9h7l-2 2.5 2 2.5h-7Z" fill="var(--ink)"/><path d="M11 1.5 20.5 18.5H1.5Z" fill="var(--trail)" stroke="var(--paper)" stroke-width="2"/></svg>',
+  career: '<svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="6" fill="var(--sheet)" stroke="var(--ink)" stroke-width="3"/></svg>',
+  next: '<svg width="20" height="22" viewBox="0 0 20 22"><path d="M4 21V2M4 3h12l-3 4 3 4H4" fill="var(--trail)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/></svg>',
+};
+const HOBBY_PATHS = {
+  loop: '<path d="M5 9a4 4 0 1 0 1.2-2.8M5 4v2.5h2.5" fill="none"/>',
+  bike: '<circle cx="5" cy="11" r="2.6" fill="none"/><circle cx="13" cy="11" r="2.6" fill="none"/><path d="M5 11 8 6h4l1 5M8 6 9.5 11" fill="none"/>',
+  road: '<path d="M5 15 12 11 6 8 12 4" fill="none"/>',
+  econ: '<path d="M4 5c4 0 6 8 10 8M4 13c4 0 6-8 10-8" fill="none"/>',
+  ball: '<circle cx="9" cy="9" r="5" fill="none"/><path d="M4 9h10M9 4v10M5.5 5.5c2 2 2 5 0 7M12.5 5.5c-2 2-2 5 0 7" fill="none"/>',
+  film: '<rect x="4" y="5" width="10" height="8" rx="1" fill="none"/><path d="M6 5v8M12 5v8" fill="none"/>',
+  bubble: '<path d="M4 5h10v6H8l-3 2.5V11H4Z" fill="none"/>',
+  meeple: '<path d="M9 3.5a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6ZM5 14l1.5-3.5L4 9.5 6 8h6l2 1.5-2.5 1L13 14Z" fill="#fff" stroke="none"/>',
+  pi: '<path d="M4.5 6h9M7 6v7.5M11 6v6.5c0 1 .6 1.3 1.6 1" fill="none"/>',
+  cube: '<path d="M9 4 14 6.5v5L9 14l-5-2.5v-5ZM4 6.5 9 9l5-2.5M9 9v5" fill="none"/>',
+};
+const hobbyGlyph = g => `<svg width="22" height="22" viewBox="-2 -2 22 22"><circle cx="9" cy="9" r="10" fill="var(--spur)"/><g stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${HOBBY_PATHS[g]}</g></svg>`;
+
+const ALL = [...STOPS, ...peaksList, ...HOBBIES.map(h => Object.assign(h, { kind: "hobby" }))];
+const byId = Object.fromEntries(ALL.map(x => [x.id, x]));
+const markerEls = [];
+for (const item of ALL) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "mk " + item.kind; b.dataset.id = item.id;
+  const g = item.kind === "hobby" ? hobbyGlyph(item.glyph) : item.id === "next" ? GLYPHS.next : item.active ? GLYPHS.activePeak : GLYPHS[item.kind];
+  b.innerHTML = `<span class="sym" aria-hidden="true">${g}</span><span class="lbl">${esc(item.name)}</span>`;
+  b.setAttribute("aria-label", `${item.name}: ${item.meta}`);
+  b._x = item.x; b._y = item.y;
+  b.addEventListener("click", e => { e.stopPropagation(); go(item.id); });
+  b.addEventListener("pointerdown", e => e.stopPropagation());
+  markersEl.appendChild(b); markerEls.push(b);
+}
+for (const [label, x, y, cls] of []) {
+  if (cls === "forest" && !stopById.thicket) continue;
+  const el = document.createElement("div"); el.className = "place " + cls; el.textContent = label;
+  el._x = x; el._y = y; markersEl.appendChild(el); markerEls.push(el);
+}
+
+const stopsEl = $("stops");
+stopsEl.insertAdjacentHTML("beforeend", '<span class="eyebrow">Stops</span>');
+for (const item of ALL) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = item.kind; b.dataset.id = item.id; b.textContent = item.name;
+  b.addEventListener("click", () => { go(item.id); mapEl.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" }); });
+  stopsEl.appendChild(b);
+}
+
+// ------------------------------------------------------------------ trail notes card and travel
+const card = $("card");
+const ORDER = STOPS.map(s => s.id);
+
+function renderCard(item) {
+  const i = ORDER.indexOf(item.id), p = item.project;
+  const tag = item.tag || { peak: "Side project", career: "Career", hobby: "Interest" }[item.kind];
+  const elev = feet(heightAt(item.x, item.y)).toLocaleString();
+  card.className = "card " + item.kind;
+  card.innerHTML = `
+    <button class="x" type="button" aria-label="Close">×</button>
+    <div class="kind"><span class="tag">${tag}</span></div>
+    <h2>${esc(item.name)}</h2>
+    <div class="meta">${esc(item.meta)} · elev ${elev} ft</div>
+    ${item.body.map(t => `<p>${esc(t)}</p>`).join("")}
+    ${p ? `<div class="meta">${factsLine(p)}</div>` : ""}
+    <div class="links">${p ? `<a href="#${esc(p.slug)}" data-card="${esc(p.slug)}">Screenshots &amp; more ↑</a>` : ""}${(item.links || []).map(([t, u]) => `<a href="${esc(u)}">${esc(t)} ↗</a>`).join("")}</div>
+    <div class="nav">
+      ${i >= 0 ? `<button type="button" data-step="-1" ${i === 0 ? "disabled" : ""}>← Previous</button>
+      <button type="button" data-step="1" ${i === ORDER.length - 1 ? "disabled" : ""}>Next →</button>` : `<button type="button" data-back>← Back to career</button>`}
+    </div>`;
+  card.hidden = false;
+  card.querySelector(".x").onclick = closeCard;
+  card.querySelectorAll("[data-step]").forEach(b => b.onclick = () => go(ORDER[i + Number(b.dataset.step)]));
+  const back = card.querySelector("[data-back]");
+  if (back) back.onclick = () => { const [x, y] = nearestOnRoute(item.x, item.y); flyTo(x, y, view.s); closeCard(); };
+  const toCard = card.querySelector("[data-card]");
+  if (toCard) toCard.onclick = e => { e.preventDefault(); showProject(toCard.dataset.card); };
+}
+function closeCard() { card.hidden = true; activeId = null; markActive(); dirty = true; }
+function markActive() {
+  document.querySelectorAll("[data-id]").forEach(el => el.classList.toggle("active", el.dataset.id === activeId));
+}
+
+let anim = null;
+function animate(duration, step, done) {
+  if (anim) cancelAnimationFrame(anim.raf);
+  if (reduceMotion || duration <= 0) { step(1); dirty = true; done && done(); return; }
+  const t0 = performance.now();
+  const tick = now => {
+    const t = Math.min(1, (now - t0) / duration), e = t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
+    step(e); dirty = true;
+    if (t < 1) anim.raf = requestAnimationFrame(tick); else { anim = null; done && done(); }
+  };
+  anim = { raf: requestAnimationFrame(tick) };
+}
+// Keep the subject clear of the trail notes card.
+const cardOffset = () => cw <= 900 ? [0, -ch * 0.26] : [-Math.min(190, cw * 0.15), 0];
+function flyTo(x, y, s, duration = 900) {
+  const [c0x, c0y] = center(), s0 = view.s, [ox, oy] = cardOffset();
+  const target = Math.max(minS(), Math.min(maxS(), s));
+  const tx = x - ox / target, ty = y - oy / target;
+  animate(duration, e => setView(c0x + (tx - c0x) * e, c0y + (ty - c0y) * e, s0 * Math.pow(target / s0, e)));
+}
+function rideTo(stop) {
+  const from = rider ?? stop.s, to = stop.s, zoom = Math.max(view.s, fit * 1.9);
+  const dist = Math.abs(to - from);
+  if (dist < 1) { rider = to; flyTo(stop.x, stop.y, zoom); return; }
+  const [c0x, c0y] = center(), s0 = view.s, [ox, oy] = cardOffset();
+  animate(Math.min(3200, 700 + dist * 1.6), e => {
+    rider = from + (to - from) * e; traveled = Math.max(traveled, rider);
+    const [px, py] = pointAt(rider), k = Math.min(1, e * 3);
+    const ss = s0 + (zoom - s0) * k;
+    setView(c0x + (px - ox / ss - c0x) * k, c0y + (py - oy / ss - c0y) * k, ss);
+  });
+}
+function go(id) {
+  const item = byId[id]; if (!item) return;
+  activeId = id; markActive(); renderCard(item);
+  if (item.kind !== "career") flyTo(item.x, item.y, Math.max(view.s, fit * 2.2));
+  else rideTo(item);
+}
+function showProject(slug) {
+  const el = document.getElementById(slug); if (!el) return;
+  el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1800);
+}
+$("ride").addEventListener("click", () => {
+  rider = null; traveled = 0; go(ORDER[0]);
+  mapEl.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+});
+
+// ------------------------------------------------------------------ input
+const pointers = new Map();
+let pinch0 = null;
+mapEl.addEventListener("pointerdown", e => {
+  if (e.target.closest(".card, .ctrl")) return;
+  mapEl.setPointerCapture(e.pointerId);
+  pointers.set(e.pointerId, [e.clientX, e.clientY]);
+  if (pointers.size === 2) { const [a, b] = [...pointers.values()]; pinch0 = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), s: view.s }; }
+  mapEl.classList.add("dragging");
+  if (anim) { cancelAnimationFrame(anim.raf); anim = null; }
+});
+mapEl.addEventListener("pointermove", e => {
+  const r = mapEl.getBoundingClientRect();
+  const wx = (e.clientX - r.left - view.tx) / view.s, wy = (e.clientY - r.top - view.ty) / view.s;
+  if (wx >= 0 && wy >= 0 && wx <= W && wy <= H) readout.textContent = `E ${(wx / 10).toFixed(1).padStart(5, "0")} · N ${((H - wy) / 10).toFixed(1).padStart(5, "0")} · elev ${feet(heightAt(wx, wy)).toLocaleString()} ft`;
+  if (!pointers.has(e.pointerId)) return;
+  const prev = pointers.get(e.pointerId); pointers.set(e.pointerId, [e.clientX, e.clientY]);
+  if (pointers.size === 1) {
+    view.tx += e.clientX - prev[0]; view.ty += e.clientY - prev[1]; clampView(); dirty = true;
+  } else if (pointers.size === 2 && pinch0) {
+    const [a, b] = [...pointers.values()];
+    const d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+    zoomAt((a[0] + b[0]) / 2 - r.left, (a[1] + b[1]) / 2 - r.top, (pinch0.s * d / pinch0.d) / view.s);
+  }
+});
+const endPointer = e => {
+  pointers.delete(e.pointerId); if (pointers.size < 2) pinch0 = null;
+  if (!pointers.size) mapEl.classList.remove("dragging");
+};
+mapEl.addEventListener("pointerup", endPointer);
+mapEl.addEventListener("pointercancel", endPointer);
+
+let coopTimer = 0;
+mapEl.addEventListener("wheel", e => {
+  if (e.target.closest(".card")) return;
+  if (!(e.ctrlKey || e.metaKey)) {
+    const coop = $("coop"); coop.classList.add("show");
+    clearTimeout(coopTimer); coopTimer = setTimeout(() => coop.classList.remove("show"), 900);
+    return;
+  }
+  e.preventDefault();
+  const r = mapEl.getBoundingClientRect();
+  zoomAt(e.clientX - r.left, e.clientY - r.top, Math.exp(-e.deltaY * 0.0022));
+}, { passive: false });
+if (!/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) {
+  $("coop").textContent = "Hold Ctrl to zoom";
+  $("hint").textContent = "Drag to pan. Pinch or Ctrl + scroll to zoom. Click anything that looks clickable.";
+}
+
+$("zin").onclick = () => zoomAt(cw / 2, ch / 2, 1.5);
+$("zout").onclick = () => zoomAt(cw / 2, ch / 2, 1 / 1.5);
+$("zfit").onclick = () => { closeCard(); flyTo(W * 0.52, H * 0.52, fit, 600); };
+mapEl.addEventListener("keydown", e => {
+  if (e.target !== mapEl) { if (e.key === "Escape") closeCard(); return; }
+  const k = { ArrowLeft: [60, 0], ArrowRight: [-60, 0], ArrowUp: [0, 60], ArrowDown: [0, -60] }[e.key];
+  if (k) { view.tx += k[0]; view.ty += k[1]; clampView(); dirty = true; e.preventDefault(); }
+  else if (e.key === "+" || e.key === "=") zoomAt(cw / 2, ch / 2, 1.3);
+  else if (e.key === "-") zoomAt(cw / 2, ch / 2, 1 / 1.3);
+  else if (e.key === "Escape") closeCard();
+});
+
+// ------------------------------------------------------------------ elevation profile
+const pcv = $("profile"), pctx = pcv.getContext("2d");
+const SAMPLES = 400, prof = Array.from({ length: SAMPLES + 1 }, (_, k) => heightAt(...pointAt(TOTAL * k / SAMPLES)));
+const profLo = Math.min(...prof) - 0.04, profHi = Math.max(...prof) + 0.02;
+let pw = 0, ph = 0, hoverS = null;
+function sizeProfile() {
+  const r = pcv.getBoundingClientRect(); pw = r.width; ph = r.height;
+  pcv.width = Math.round(pw * dpr); pcv.height = Math.round(ph * dpr);
+}
+function drawProfile() {
+  if (!pw) return;
+  const c = pctx, padL = 14, padR = 14, top = 30, bot = 18, lo = profLo, hi = profHi;
+  c.setTransform(dpr, 0, 0, dpr, 0, 0);
+  c.fillStyle = COLORS.sheet; c.fillRect(0, 0, pw, ph);
+  const X = s => padL + (pw - padL - padR) * s / TOTAL, Y = h => top + (ph - top - bot) * (1 - (h - lo) / (hi - lo));
+  c.strokeStyle = COLORS.rule; c.lineWidth = 1; c.beginPath();
+  for (let f = 0; f <= 1; f += 0.25) { const y = Y(lo + (hi - lo) * f); c.moveTo(padL, y); c.lineTo(pw - padR, y); }
+  c.stroke();
+  c.beginPath(); c.moveTo(X(0), ph - bot);
+  prof.forEach((h, k) => c.lineTo(X(TOTAL * k / SAMPLES), Y(h)));
+  c.lineTo(X(TOTAL), ph - bot); c.closePath();
+  c.fillStyle = COLORS.contour; c.globalAlpha = 0.18; c.fill(); c.globalAlpha = 1;
+  c.beginPath(); prof.forEach((h, k) => k ? c.lineTo(X(TOTAL * k / SAMPLES), Y(h)) : c.moveTo(X(0), Y(h)));
+  c.strokeStyle = COLORS.trail; c.lineWidth = 2; c.stroke();
+  if (traveled > 0) { c.fillStyle = COLORS.trail; c.globalAlpha = 0.12; c.fillRect(X(0), top - 6, X(traveled) - X(0), ph - top - bot + 6); c.globalAlpha = 1; }
+
+  c.font = "10px " + css("--font-mono"); c.textBaseline = "alphabetic";
+  let lastRight = -Infinity;
+  for (const st of STOPS) {
+    const x = X(st.s), y = Y(heightAt(st.x, st.y));
+    c.strokeStyle = COLORS.ink; c.globalAlpha = 0.3; c.beginPath(); c.moveTo(x, y); c.lineTo(x, ph - bot); c.stroke(); c.globalAlpha = 1;
+    c.fillStyle = st.kind === "peak" ? COLORS.trail : COLORS.ink; c.beginPath(); c.arc(x, y, st.id === activeId ? 5 : 3.5, 0, Math.PI * 2); c.fill();
+    const label = (st.short || st.name).toUpperCase(), w = c.measureText(label).width;
+    const lx = Math.min(pw - padR - w, Math.max(padL, x - w / 2));
+    if (lx > lastRight + 6) { c.fillStyle = st.id === activeId ? COLORS.trail : COLORS.muted; c.fillText(label, lx, 14); lastRight = lx + w; }
+  }
+  for (const pk of peaksList) {
+    const x = X(pk.s), y = Y(heightAt(...pointAt(pk.s)));
+    c.fillStyle = pk.id === activeId ? COLORS.ink : COLORS.trail;
+    c.beginPath(); c.moveTo(x, y - 12); c.lineTo(x + 5, y - 4); c.lineTo(x - 5, y - 4); c.closePath(); c.fill();
+  }
+  const mark = hoverS ?? rider;
+  if (mark !== null) {
+    const x = X(mark), h = heightAt(...pointAt(mark));
+    c.strokeStyle = COLORS.trail; c.beginPath(); c.moveTo(x, top - 8); c.lineTo(x, ph - bot); c.stroke();
+    c.fillStyle = COLORS.trail; c.beginPath(); c.arc(x, Y(h), 5, 0, Math.PI * 2); c.fill();
+    const txt = `${feet(h).toLocaleString()} ft · mi ${(mark / 160).toFixed(1)}`, w = c.measureText(txt).width;
+    c.fillStyle = COLORS.ink; c.fillText(txt, Math.min(pw - padR - w, x + 6), ph - 4);
+  }
+}
+const profileS = e => { const r = pcv.getBoundingClientRect(); return Math.max(0, Math.min(TOTAL, (e.clientX - r.left - 14) / (r.width - 28) * TOTAL)); };
+let scrubbing = false;
+pcv.addEventListener("pointermove", e => {
+  hoverS = profileS(e);
+  if (scrubbing) { rider = hoverS; traveled = Math.max(traveled, rider); const [x, y] = pointAt(rider), [ox, oy] = cardOffset(); setView(x - ox / view.s, y - oy / view.s, view.s); }
+  dirty = true;
+});
+pcv.addEventListener("pointerleave", () => { hoverS = null; dirty = true; });
+pcv.addEventListener("pointerdown", e => {
+  scrubbing = true; pcv.setPointerCapture(e.pointerId);
+  rider = profileS(e); if (view.s < fit * 1.5) setView(...pointAt(rider), fit * 1.8); dirty = true;
+});
+pcv.addEventListener("pointerup", e => {
+  scrubbing = false;
+  const s = profileS(e), near = STOPS.reduce((a, b) => Math.abs(b.s - s) < Math.abs(a.s - s) ? b : a);
+  if (Math.abs(near.s - s) < TOTAL * 0.02) go(near.id);
+});
+
+// ------------------------------------------------------------------ links, live facts, boot
+$("links").innerHTML = LINKS.filter(([, u]) => u).map(([t, u]) => `<a href="${esc(u)}">${esc(t)}</a>`).join("");
+
+// Freshen "last worked on" from GitHub when the API is reachable.
+for (const p of PROJECTS) {
+  if (!p.repo) continue;
+  fetch(`https://api.github.com/repos/${p.repo}`).then(r => r.ok ? r.json() : null).then(j => {
+    if (!j || !j.pushed_at) return;
+    p.updated = j.pushed_at.slice(0, 10);
+    const el = p.el.querySelector(".facts");
+    if (el) el.textContent = factsLine(p);
+  }).catch(() => {});
+}
+
+readTheme();
+const retheme = () => { readTheme(); dirty = true; };
+const scheme = matchMedia("(prefers-color-scheme: dark)");
+scheme.addEventListener ? scheme.addEventListener("change", retheme) : scheme.addListener(retheme);
+new MutationObserver(retheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+new ResizeObserver(() => { resize(); dirty = true; }).observe(mapEl);
+resize();
+requestAnimationFrame(frame);
+if (document.fonts) document.fonts.ready.then(() => { markerEls.forEach(el => { el._w = undefined; }); labelScale = 0; dirty = true; });
+
+function routeHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  const el = id && document.getElementById(id);
+  if (el && el.classList.contains("proj")) { showProject(id); go(id); }
+  else if (byId[id]) { $("map-section").scrollIntoView(); go(id); }
+}
+window.addEventListener("hashchange", routeHash);
+setTimeout(routeHash, 150);
+})();
+</script>
+</body>
+</html>
