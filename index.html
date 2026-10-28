@@ -117,12 +117,15 @@ section.band { padding-block: 56px 8px; }
 .proj .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
 .proj figure img { display: block; width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--rule); background: var(--paper); }
 .proj figure img.pixels { image-rendering: pixelated; }
+.proj figure img.narrow { max-width: 320px; }
 .proj figcaption { font: 400 0.72rem/1.4 var(--font-mono); color: var(--muted); grid-column: 1 / -1; }
 .proj pre {
   margin: 0; background: var(--code-bg); color: var(--code-ink); border-radius: 6px; padding: 12px 14px; overflow-x: auto;
   font: 400 0.78rem/1.55 var(--font-mono);
 }
 .proj pre .c { opacity: .55; }
+.proj code { font: 400 0.86em var(--font-mono); }
+.proj .mm { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 14px 16px; font-size: 1.02rem; line-height: 1.6; }
 .proj .facts { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
 .proj .links { display: flex; gap: 8px 16px; flex-wrap: wrap; align-items: center; font: 500 0.8rem/1.2 var(--font-mono); border-top: 1px solid var(--rule); padding-top: 12px; }
 .linkbtn { background: none; border: 0; padding: 0; color: var(--muted); font: inherit; cursor: pointer; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
@@ -161,6 +164,9 @@ section.band { padding-block: 56px 8px; }
 }
 .mk .sym { width: 22px; height: 22px; display: grid; place-items: center; flex: none; transform: translate(-11px, 0); }
 .mk .lbl { transform: translate(-8px, 0); font: italic 400 0.98rem/1.1 var(--font-body); text-shadow: 0 0 3px var(--paper), 0 0 3px var(--paper), 0 0 6px var(--paper); }
+.mk.flip { flex-direction: row-reverse; translate: -100% 0; }
+.mk.flip .sym { transform: translate(11px, 0); }
+.mk.flip .lbl { transform: translate(8px, 0); }
 .mk.peak .lbl { font: 800 1.02rem/1 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; font-style: normal; }
 .mk.career .lbl { font: 600 0.88rem/1 var(--font-display); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .mk.hobby .lbl { color: var(--spur); font-size: 0.9rem; opacity: 0; transition: opacity .2s; }
@@ -293,18 +299,17 @@ footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
   ADDING A PROJECT: copy one <article> below, then edit it.
     id            the project's link, e.g. alecf.github.io/#total-recall
     data-status   open | rough | building | idea
-    data-started  YYYY-MM-DD (optional; orders the peaks along the trail)
+    data-started  YYYY-MM-DD (optional; sets its order along the side-project trail on the map)
     data-updated  YYYY-MM-DD (optional; refreshed from GitHub when data-repo is set)
     data-commits  (optional; sets the peak's height)
     data-repo     owner/name on GitHub (optional)
-    data-map      "E,N" from the map's coordinate readout (optional; auto-placed if left out)
     data-short    shorter name for the elevation profile (optional)
   Everything inside is plain HTML: write whatever you like. The <h3> is the name on the map,
   the first <p> becomes the map's trail note, and links in <p class="links"> show up there too.
   Screenshots go in projects/<id>/.
 -->
 
-      <article class="proj" id="total-recall" data-status="open" data-started="2026-04-01" data-updated="2026-10-26" data-commits="157" data-repo="alecf/totalrecall" data-map="179,83">
+      <article class="proj" id="total-recall" data-status="open" data-started="2026-04-01" data-updated="2026-10-26" data-commits="157" data-repo="alecf/totalrecall">
         <h3>Total Recall</h3>
         <p class="stack">macOS menu bar app · Swift</p>
         <p>A menu bar app that shows where your Mac's memory actually went. It groups processes by the app they belong to, and lives by one rule: blue is RAM, amber is not.</p>
@@ -315,7 +320,7 @@ footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
         <p class="links"><a href="https://github.com/alecf/totalrecall">Repo ↗</a></p>
       </article>
 
-      <article class="proj" id="dr-creep" data-status="open" data-started="2026-08-22" data-updated="2026-10-26" data-commits="10" data-repo="alecf/dr-creep-in-zig" data-map="196,125" data-short="Dr. Creep">
+      <article class="proj" id="dr-creep" data-status="open" data-started="2026-08-22" data-updated="2026-10-26" data-commits="10" data-repo="alecf/dr-creep-in-zig" data-short="Dr. Creep">
         <h3>Dr. Creep's Castle</h3>
         <p class="stack">Zig · 6502 · WebAssembly</p>
         <p>Software archaeology. I took the original 1984 Commodore 64 disk of The Castles of Dr. Creep and am working it from disk image to 6502 assembly to Zig, until it runs natively on a Mac and in the browser. It's how I learned Zig, and I wrote a tutorial as I went.</p>
@@ -327,7 +332,7 @@ footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
         <p class="links"><a href="https://alecf.github.io/dr-creep-in-zig/game/">Play it ↗</a> <a href="https://alecf.github.io/dr-creep-in-zig/tutorial/">Tutorial ↗</a> <a href="https://github.com/alecf/dr-creep-in-zig">Repo ↗</a></p>
       </article>
 
-      <article class="proj" id="thicket" data-status="rough" data-started="2026-08-09" data-updated="2026-10-05" data-commits="107" data-repo="alecf/thicket" data-map="149,112">
+      <article class="proj" id="thicket" data-status="rough" data-started="2026-08-09" data-updated="2026-10-05" data-commits="107" data-repo="alecf/thicket">
         <h3>Thicket</h3>
         <p class="stack">CLI · TypeScript</p>
         <p>A CLI that reads a TypeScript codebase and writes a plain-text report of duplication and tangled modules, made to be read by an LLM inside a refactoring loop.</p>
@@ -340,7 +345,7 @@ thicket &gt; thicket.md</pre>
         <p class="links"><a href="https://github.com/alecf/thicket">Repo ↗</a> <a href="https://alecf.github.io/thicket/report-guide.md">Field guide ↗</a></p>
       </article>
 
-      <article class="proj" id="wled-pro" data-status="building" data-started="2025-12-19" data-updated="2026-10-27" data-commits="120" data-repo="alecf/wled-pro" data-map="166,38">
+      <article class="proj" id="wled-pro" data-status="building" data-started="2025-12-19" data-updated="2026-10-27" data-commits="120" data-repo="alecf/wled-pro">
         <h3>WLED Pro</h3>
         <p class="stack">React · TypeScript · Vite · Bun</p>
         <p>A new UI for WLED, the open source firmware that drives ESP32-based LED lighting controllers. It's served straight from the controller, with live state kept in sync through TanStack Query.</p>
@@ -349,6 +354,70 @@ thicket &gt; thicket.md</pre>
           <figcaption>Splitting an LED strip into segments, with a snap-to-boundaries mode.</figcaption>
         </figure>
         <p class="links"><a href="https://github.com/alecf/wled-pro">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="photo-restore" data-status="open" data-started="2026-05-29" data-updated="2026-09-25" data-commits="26" data-repo="alecf/photo-restore-mac">
+        <h3>Photo Restore</h3>
+        <p class="stack">macOS app · Core ML</p>
+        <p>A small Mac app for old family-photo scans. Drag in a faded print or a whole folder and watch each one come back, with a before-and-after slider: auto-contrast, upscaling, and face restoration. It all runs on-device, so nothing leaves your Mac.</p>
+        <p>It started as a Python command-line tool, then I rebuilt it as a native app with the same models converted to Core ML.</p>
+        <p class="links"><a href="https://alecf.github.io/photo-restore-mac/">Download ↗</a> <a href="https://github.com/alecf/photo-restore-mac">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="notes-to-web" data-status="rough" data-started="2026-08-03" data-updated="2026-08-04" data-commits="12" data-repo="alecf/notes-to-web">
+        <h3>notes-to-web</h3>
+        <p class="stack">macOS app</p>
+        <p>Turns an Apple Note into a static webpage, with its videos still playing inline. Someone shared a set of workouts with me as a note, with a demo video after each exercise, and Notes could only export a PDF where the videos were dead rectangles.</p>
+        <pre>my-workout/
+├── index.html
+└── assets/
+    ├── style.css
+    ├── IMG_5167.mp4
+    ├── IMG_5167.poster.jpg
+    └── …</pre>
+        <p>The videos get re-encoded on the way out. Straight off an iPhone, that one note was 538 MB.</p>
+        <p class="links"><a href="https://github.com/alecf/notes-to-web">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="heyman" data-status="open" data-started="2026-01-12" data-updated="2026-10-06" data-commits="24" data-repo="alecf/heyman">
+        <h3>hey, man!</h3>
+        <p class="stack">CLI · Go</p>
+        <p>Ask for a shell command in plain English and get one back. Before it answers, the model reads the man pages on your machine, so the flags match what you actually have installed.</p>
+        <pre><span class="c">$</span> heyman lsof which process is listening on port 8080
+lsof -i :8080
+<span class="c">$</span> heyman stat print the size in bytes and modification time of notes.txt
+stat -f "%z %Sm" notes.txt</pre>
+        <p>That second answer is the BSD <code>stat</code> that ships with macOS. On Linux you get GNU syntax, because the model read a different man page.</p>
+        <p class="links"><a href="https://alecf.github.io/heyman/">Evals ↗</a> <a href="https://github.com/alecf/heyman">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="queens" data-status="open" data-started="2026-02-28" data-updated="2026-04-07" data-commits="23" data-repo="alecf/queens">
+        <h3>Queens</h3>
+        <p class="stack">Web game · React · TypeScript</p>
+        <p>The Queens logic puzzle: one queen in every row, column and colored region, and no two queens touching. Boards from 5×5 to 9×9, tap to cycle a cell, drag to paint, hints when you're stuck, and a URL for every board so you can send one to a friend.</p>
+        <figure>
+          <img class="narrow" src="projects/queens/board.png" alt="A 7 by 7 Queens board divided into colored regions, with a few cells crossed out by hints" width="640" height="837" loading="lazy">
+          <figcaption>A 7×7 board, a few hints in.</figcaption>
+        </figure>
+        <p class="links"><a href="https://github.com/alecf/queens">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="pathforge" data-status="rough" data-started="2025-08-06" data-updated="2026-10-06" data-commits="56" data-repo="alecf/pathforge">
+        <h3>PathForge</h3>
+        <p class="stack">Next.js · three.js · Strava API</p>
+        <p>Signs in with Strava, pulls in my rides, and draws them in 3D, with terrain built from the elevation recorded along the rides themselves.</p>
+        <p class="links"><a href="https://github.com/alecf/pathforge">Repo ↗</a></p>
+      </article>
+
+      <article class="proj" id="meaning-maker" data-status="open" data-started="2023-04-17" data-updated="2026-10-20" data-commits="64" data-repo="alecf/meaning-maker" data-short="Meaning">
+        <h3>Meaning Maker</h3>
+        <p class="stack">Next.js · OpenAI embeddings</p>
+        <p>Paste in some text and it fades each sentence by how much new information it adds. Sentences that repeat what came before go faint, and the ones that say something new stay bright.</p>
+        <figure>
+          <p class="mm"><span style="opacity:1">Our app helps teams ship faster.</span> <span style="opacity:.3">It helps teams move quickly and ship sooner.</span> <span style="opacity:.42">Shipping fast matters to every team.</span> <span style="opacity:1">It also runs entirely offline, on any laptop.</span> <span style="opacity:.22">Teams ship faster with it.</span> <span style="opacity:.9">Pricing starts at zero.</span></p>
+          <figcaption>Roughly what it does to a pitch. Under the hood it compares embeddings of a rolling window of sentences.</figcaption>
+        </figure>
+        <p class="links"><a href="https://github.com/alecf/meaning-maker">Repo ↗</a></p>
       </article>
 
     </div>
@@ -366,6 +435,7 @@ thicket &gt; thicket.md</pre>
           <div><dt><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2.5"/></svg></dt><dd>Job</dd></div>
           <div><dt><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="var(--spur)"/></svg></dt><dd>Detours and interests</dd></div>
           <div><dt><svg width="26" height="8" viewBox="0 0 26 8" aria-hidden="true"><path d="M1 4H25" stroke="var(--trail)" stroke-width="3" stroke-dasharray="6 3"/></svg></dt><dd>Career, oldest to newest</dd></div>
+          <div><dt><svg width="26" height="8" viewBox="0 0 26 8" aria-hidden="true"><path d="M1 4H25" stroke="var(--trail)" stroke-width="2" stroke-dasharray="3 3"/></svg></dt><dd>Side projects, oldest to newest</dd></div>
           <div class="fine"><dd>Contour interval 300 ft. Index contours every 1,500 ft. Terrain is procedurally generated, but each project's peak rises with its commit count.</dd></div>
         </dl>
         <p class="hint" id="hint">Drag to pan. Pinch or ⌘/Ctrl + scroll to zoom. Click anything that looks clickable.</p>
@@ -464,10 +534,12 @@ const CAREER = [
     body: ["Where I am now. I've been embedded with many startups, helping them bootstrap: setting up how the team builds software, building first proofs of concept, and getting early apps into production.",
       "My sweet spot is teams of 2 to 10 people getting a new company off the ground."] },
 ];
-const TRAIL_END = { id: "next", kind: "career", name: "Today", meta: "Now", x: 2280, y: 420,
+const TRAIL_END = { id: "next", kind: "career", name: "Today", meta: "Now", x: 2200, y: 380,
   body: ["Still at The General Partnership, and still starting side projects. The latest are at the top of the page."], links: [["Projects", "#projects"]] };
-// The stretch of main trail after the career stops, through the valleys between project peaks.
-const MAIN_TAIL = [[1380, 1060], [1560, 920], [1660, 800], [1700, 640], [1760, 530], [1900, 480], [2080, 450]];
+// The career trail through the TGP years, out to today.
+const MAIN_TAIL = [[1420, 1190], [1620, 1170], [1820, 1100], [1980, 980], [2090, 820], [2160, 640], [2190, 500]];
+// The side-project trail, which runs alongside it.
+const SIDE_TRAIL = [[1330, 990], [1400, 840], [1530, 760], [1680, 720], [1800, 620], [1880, 500], [1960, 400], [2080, 350]];
 
 const HOBBIES = [
   { id: "math-class", name: "Teaching", tag: "Detour", meta: "High school math", glyph: "pi", x: 120, y: 1010,
@@ -476,9 +548,9 @@ const HOBBIES = [
     body: ["Bikepacking trips, when I can get away for a few days."] },
   { id: "singletrack", name: "Mountain biking", meta: "Outdoors", glyph: "bike", x: 1060, y: 1380,
     body: ["Mountain biking, as often as I can."] },
-  { id: "switchbacks", name: "Road riding", meta: "Outdoors", glyph: "road", x: 1990, y: 1120,
+  { id: "switchbacks", name: "Road riding", meta: "Outdoors", glyph: "road", x: 1880, y: 1360,
     body: ["Road riding too."] },
-  { id: "valkyries", name: "Valkyries", meta: "WNBA", glyph: "ball", x: 2170, y: 650,
+  { id: "valkyries", name: "Valkyries", meta: "WNBA", glyph: "ball", x: 2250, y: 1000,
     body: ["A new Golden State Valkyries fan."] },
   { id: "drive-in", name: "Movies", meta: "Interests", glyph: "film", x: 600, y: 1440,
     body: ["Big movie fan. Happy to give recommendations."] },
@@ -560,38 +632,33 @@ const PROJECTS = projectEls.map(el => {
     el, slug: el.id, name: h ? h.textContent.trim() : el.id, short: d.short,
     status: STATUS[d.status] ? d.status : "open", started: d.started, updated: d.updated,
     commits: Number(d.commits) || 0, repo: d.repo,
-    map: d.map ? d.map.split(",").map(Number) : null,
     stack: stack ? stack.textContent.trim() : "",
     summary: firstP ? firstP.textContent.trim() : "",
     links: [...el.querySelectorAll(".links a")].map(a => [a.textContent.replace("↗", "").trim(), a.getAttribute("href")]),
   };
 });
 
-// ------------------------------------------------------------------ placing projects on the map
-function autoPlace(taken) {
-  // The open spot in the eastern half that's farthest from everything else.
-  let best = null, bestD = -1;
-  for (let x = 1400; x <= 2250; x += 25) for (let y = 220; y <= 1350; y += 25) {
-    let d = Infinity;
-    for (const [px, py] of taken) d = Math.min(d, Math.hypot(px - x, py - y));
-    if (d > bestD) { bestD = d; best = [x, y]; }
-  }
+// ------------------------------------------------------------------ trails
+// Dense polyline + cumulative arc length, so things can be placed by distance along a trail.
+function trail(points, perSeg = PER_SEG) {
+  const pts = spline(points, perSeg), arc = [0];
+  for (let k = 1; k < pts.length; k++) arc.push(arc[k - 1] + Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]));
+  return { pts, arc, total: arc[arc.length - 1] };
+}
+function along(t, s) {
+  s = Math.max(0, Math.min(t.total, s));
+  let lo = 0, hi = t.arc.length - 1;
+  while (hi - lo > 1) { const m = (lo + hi) >> 1; if (t.arc[m] < s) lo = m; else hi = m; }
+  const f = (s - t.arc[lo]) / ((t.arc[hi] - t.arc[lo]) || 1), a = t.pts[lo], b = t.pts[hi];
+  return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+}
+function nearestIndex(pts, x, y) {
+  let best = 0, bd = Infinity;
+  for (let k = 0; k < pts.length; k++) { const d = (pts[k][0] - x) ** 2 + (pts[k][1] - y) ** 2; if (d < bd) { bd = d; best = k; } }
   return best;
 }
-const peaksList = [];
-{
-  const taken = [...CAREER.flatMap(c => c.at), ...HOBBIES.map(h => [h.x, h.y]), [TRAIL_END.x, TRAIL_END.y],
-    ...PROJECTS.filter(p => p.map).map(p => [p.map[0] * 10, H - p.map[1] * 10])];
-  for (const p of PROJECTS) {
-    let x, y;
-    if (p.map) { x = p.map[0] * 10; y = H - p.map[1] * 10; }
-    else { [x, y] = autoPlace(taken); taken.push([x, y]); }
-    const since = p.started ? "Since " + new Date(p.started + "T12:00:00").toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "";
-    peaksList.push({ id: p.slug, kind: "peak", name: p.name, short: p.short, x, y, project: p,
-      meta: [p.stack, since].filter(Boolean).join(" · "), body: p.summary ? [p.summary] : [], links: p.links });
-  }
-}
-// The main trail visits career stops in order; side projects are loops off it.
+
+// The career trail visits each stop in order and ends at today.
 const ROUTE = [];
 for (const c of CAREER) {
   c.kind = "career";
@@ -600,12 +667,36 @@ for (const c of CAREER) {
 }
 ROUTE.push(...MAIN_TAIL, [TRAIL_END.x, TRAIL_END.y, TRAIL_END.id]);
 const STOPS = [...CAREER, TRAIL_END];
+const CAREER_TRAIL = trail(ROUTE), route = CAREER_TRAIL.pts, arc = CAREER_TRAIL.arc, TOTAL = CAREER_TRAIL.total;
+ROUTE.forEach((p, k) => { if (p[2]) STOPS.find(st => st.id === p[2]).s = arc[k * PER_SEG]; });
+const ROUTE_PATH = toPath(route);
+const pointAt = s => along(CAREER_TRAIL, s);
+const nearestOnRoute = (x, y) => route[nearestIndex(route, x, y)];
+
+// The side-project trail leaves the career trail early in the TGP years and runs alongside it to today.
+const BRANCH_S = STOPS.find(st => st.id === "tgp").s + 70;
+const SIDE = trail([pointAt(BRANCH_S), ...SIDE_TRAIL, [TRAIL_END.x, TRAIL_END.y]]);
+const side = SIDE.pts, SIDE_PATH = toPath(side);
+
+// Projects sit on the side trail in the order they were started, evenly spaced, newest nearest today.
+const peaksList = [];
+{
+  const ordered = [...PROJECTS].sort((a, b) => (a.started || "9999").localeCompare(b.started || "9999"));
+  const first = 110, last = SIDE.total - 110, n = ordered.length;
+  ordered.forEach((p, k) => {
+    const sideS = n > 1 ? first + (last - first) * k / (n - 1) : (first + last) / 2, [x, y] = along(SIDE, sideS);
+    const since = p.started ? "Since " + new Date(p.started + "T12:00:00").toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "";
+    peaksList.push({ id: p.slug, kind: "peak", name: p.name, short: p.short, x, y, project: p,
+      s: BRANCH_S + (TOTAL - BRANCH_S) * sideS / SIDE.total,   // the same point in time on the career trail, for the elevation profile
+      meta: [p.stack, since].filter(Boolean).join(" · "), body: p.summary ? [p.summary] : [], links: p.links });
+  });
+}
 const stopById = Object.fromEntries([...STOPS, ...peaksList].map(s => [s.id, s]));
 
 // ------------------------------------------------------------------ terrain
 const grid = new Float32Array(NX * NY);
 {
-  const bumps = peaksList.map(pk => [pk.x, pk.y, 0.1 + 0.07 * Math.log10((pk.project.commits || 20) + 1), 115]);
+  const bumps = peaksList.map(pk => [pk.x, pk.y, 0.1 + 0.07 * Math.log10((pk.project.commits || 20) + 1), 80]);
   let lo = Infinity, hi = -Infinity;
   for (let j = 0; j < NY; j++) for (let i = 0; i < NX; i++) {
     const x = i * STEP, y = j * STEP;
@@ -656,42 +747,6 @@ const CONTOURS = (() => {
   return { reg, idx, shore };
 })();
 
-const route = spline(ROUTE);
-const arc = [0];
-for (let k = 1; k < route.length; k++) arc.push(arc[k - 1] + Math.hypot(route[k][0] - route[k - 1][0], route[k][1] - route[k - 1][1]));
-const TOTAL = arc[arc.length - 1];
-ROUTE.forEach((p, k) => { if (p[2]) stopById[p[2]].s = arc[k * PER_SEG]; });
-const ROUTE_PATH = toPath(route);
-
-function pointAt(s) {
-  s = Math.max(0, Math.min(TOTAL, s));
-  let lo = 0, hi = arc.length - 1;
-  while (hi - lo > 1) { const m = (lo + hi) >> 1; if (arc[m] < s) lo = m; else hi = m; }
-  const t = (s - arc[lo]) / ((arc[hi] - arc[lo]) || 1);
-  return [route[lo][0] + (route[hi][0] - route[lo][0]) * t, route[lo][1] + (route[hi][1] - route[lo][1]) * t];
-}
-function nearestOnRoute(x, y) {
-  let best = 0, bd = Infinity;
-  for (let k = 0; k < route.length; k++) {
-    const d = (route[k][0] - x) ** 2 + (route[k][1] - y) ** 2;
-    if (d < bd) { bd = d; best = k; }
-  }
-  return route[best];
-}
-
-// Side projects: a loop that leaves the main trail, climbs to the peak and rejoins further on.
-const loops = new Path2D(), loopPts = [];
-for (const pk of peaksList) {
-  let k0 = 0, bd = Infinity;
-  route.forEach(([x, y], k) => { const d = Math.hypot(x - pk.x, y - pk.y); if (d < bd) { bd = d; k0 = k; } });
-  const L = Math.max(50, Math.min(100, bd * 0.45));
-  const A = pointAt(arc[k0] - L), B = pointAt(arc[k0] + L), P = [pk.x, pk.y];
-  const out = (a, b) => [(a[0] + P[0]) / 2 + (a[0] - b[0]) * 0.3, (a[1] + P[1]) / 2 + (a[1] - b[1]) * 0.3];
-  const pts = spline([A, out(A, B), P, out(B, A), B], 14);
-  loops.addPath(toPath(pts)); loopPts.push(...pts);
-  pk.s = arc[k0];
-}
-
 // Side trails: a wiggly spur from the nearest point on the main trail.
 const spurs = new Path2D();
 for (const h of HOBBIES) {
@@ -719,9 +774,9 @@ const trees = [];
 if (stopById.thicket) {
   const r = mulberry32(42), t = stopById.thicket;
   for (let k = 0; k < 220; k++) {
-    const a = r() * Math.PI * 2, d = Math.sqrt(r()) * 190, x = t.x + Math.cos(a) * d * 1.2, y = t.y + Math.sin(a) * d;
+    const a = r() * Math.PI * 2, d = Math.sqrt(r()) * 120, x = t.x + Math.cos(a) * d * 1.2, y = t.y + Math.sin(a) * d;
     const [qx, qy] = nearestOnRoute(x, y);
-    const clear = Math.hypot(qx - x, qy - y) > 16 && loopPts.every(([lx, ly]) => Math.hypot(lx - x, ly - y) > 14);
+    const clear = Math.hypot(qx - x, qy - y) > 16 && side.every(([lx, ly]) => Math.hypot(lx - x, ly - y) > 16);
     if (clear && Math.hypot(x - t.x, y - t.y) > 30) trees.push([x, y, 4 + r() * 4]);
   }
 }
@@ -776,8 +831,8 @@ function paintWorld(c, s, opts = {}) {
   c.strokeStyle = COLORS.spur; c.lineWidth = 3 / s; c.setLineDash([0.1 / s, 5 / s]); c.stroke(spurs);
   c.setLineDash([]);
   c.strokeStyle = COLORS.paper; c.globalAlpha = 0.8; c.lineWidth = 8 / s; c.stroke(ROUTE_PATH); c.globalAlpha = 1;
-  c.strokeStyle = COLORS.paper; c.globalAlpha = 0.8; c.lineWidth = 6 / s; c.stroke(loops); c.globalAlpha = 1;
-  c.strokeStyle = COLORS.trail; c.lineWidth = 2.2 / s; c.setLineDash([3 / s, 4 / s]); c.stroke(loops);
+  c.strokeStyle = COLORS.paper; c.globalAlpha = 0.8; c.lineWidth = 6 / s; c.stroke(SIDE_PATH); c.globalAlpha = 1;
+  c.strokeStyle = COLORS.trail; c.lineWidth = 2.2 / s; c.setLineDash([3 / s, 4 / s]); c.stroke(SIDE_PATH);
   c.lineWidth = 3 / s; c.setLineDash([9 / s, 5 / s]); c.stroke(ROUTE_PATH);
   c.setLineDash([]);
   if (opts.traveled > 0) {
@@ -808,7 +863,7 @@ for (const pk of peaksList) {
   if (!links) { links = document.createElement("p"); links.className = "links"; body.append(links); }
   const facts = factsLine(p);
   if (facts) links.insertAdjacentHTML("beforebegin", `<p class="facts">${facts}</p>`);
-  links.insertAdjacentHTML("beforeend", `<button type="button" class="linkbtn" data-map="${esc(p.slug)}">Find it on the map</button>
+  links.insertAdjacentHTML("beforeend", `<button type="button" class="linkbtn" data-find="${esc(p.slug)}">Find it on the map</button>
     <button type="button" class="linkbtn share" data-share="${esc(p.slug)}">Copy link</button>`);
 }
 let toastTimer = 0;
@@ -817,8 +872,8 @@ function toast(msg) {
   clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 2400);
 }
 $("project-grid").addEventListener("click", e => {
-  const m = e.target.closest("[data-map]"), sh = e.target.closest("[data-share]");
-  if (m) { $("map-section").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); go(m.dataset.map); }
+  const m = e.target.closest("[data-find]"), sh = e.target.closest("[data-share]");
+  if (m) { $("map-section").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); go(m.dataset.find); }
   if (sh) {
     const url = location.origin + location.pathname + "#" + sh.dataset.share;
     const fallback = () => toast(url);
@@ -839,7 +894,7 @@ function resize() {
   cw = r.width; ch = r.height; dpr = Math.min(2, window.devicePixelRatio || 1);
   cv.width = Math.round(cw * dpr); cv.height = Math.round(ch * dpr);
   fit = Math.max(cw / W, ch / H) * (cw < 600 ? 1.15 : 1);
-  if (first) setView(W * 0.5, H * 0.52, fit);
+  if (first) setView(W * 0.52, H * 0.52, fit);
   else setView(cx, cy, fit * rel);
   sizeProfile();
 }
@@ -877,8 +932,25 @@ function draw() {
   for (let y = 200; y < H; y += 200) { const py = y * s + ty; if (py > 130 && py < ch - 40) ctx.fillText(String((H - y) / 10).padStart(3, "0"), cw - 26, py - 3); }
 
   for (const el of markerEls) el.style.transform = `translate(${el._x * s + tx}px, ${el._y * s + ty}px) translateY(-50%)`;
+  if (s !== labelScale) placeLabels(s);
   mapEl.classList.toggle("close", s > fit * 1.6);
   drawProfile();
+}
+// Project labels go on whichever side of their peak overlaps the other labels least.
+let labelScale = 0;
+function placeLabels(s) {
+  labelScale = s;
+  const box = (el, left) => {
+    const w = el._w ??= el.querySelector(".lbl").offsetWidth, x = el._x * s, y = el._y * s;
+    return left ? [x - 14 - w, y - 10, x + 11, y + 10] : [x - 11, y - 10, x + 14 + w, y + 10];
+  };
+  const overlap = (a, b) => Math.max(0, Math.min(a[2], b[2]) - Math.max(a[0], b[0])) * Math.max(0, Math.min(a[3], b[3]) - Math.max(a[1], b[1]));
+  const fixed = markerEls.filter(el => el.classList.contains("career")).map(el => box(el, false));
+  const peaks = markerEls.filter(el => el.classList.contains("peak"));
+  const side = new Map(peaks.map(el => [el, false]));
+  const cost = (el, left) => [...fixed, ...peaks.filter(o => o !== el).map(o => box(o, side.get(o)))].reduce((t, o) => t + overlap(box(el, left), o), 0);
+  for (let pass = 0; pass < 4; pass++) for (const el of peaks) side.set(el, cost(el, true) < cost(el, false) - 1);
+  for (const el of peaks) el.classList.toggle("flip", side.get(el));
 }
 function frame() { if (dirty) { dirty = false; draw(); } requestAnimationFrame(frame); }
 
@@ -1064,7 +1136,7 @@ if (!/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) {
 
 $("zin").onclick = () => zoomAt(cw / 2, ch / 2, 1.5);
 $("zout").onclick = () => zoomAt(cw / 2, ch / 2, 1 / 1.5);
-$("zfit").onclick = () => { closeCard(); flyTo(W / 2, H * 0.52, fit, 600); };
+$("zfit").onclick = () => { closeCard(); flyTo(W * 0.52, H * 0.52, fit, 600); };
 mapEl.addEventListener("keydown", e => {
   if (e.target !== mapEl) { if (e.key === "Escape") closeCard(); return; }
   const k = { ArrowLeft: [60, 0], ArrowRight: [-60, 0], ArrowUp: [0, 60], ArrowDown: [0, -60] }[e.key];
@@ -1164,7 +1236,7 @@ new MutationObserver(retheme).observe(document.documentElement, { attributes: tr
 new ResizeObserver(() => { resize(); dirty = true; }).observe(mapEl);
 resize();
 requestAnimationFrame(frame);
-if (document.fonts) document.fonts.ready.then(() => { dirty = true; });
+if (document.fonts) document.fonts.ready.then(() => { markerEls.forEach(el => { el._w = undefined; }); labelScale = 0; dirty = true; });
 
 function routeHash() {
   const id = decodeURIComponent(location.hash.slice(1));

@@ -17,11 +17,10 @@ Everything lives in `index.html` (no build step). Screenshots live in `projects/
    | attribute | what it does |
    |---|---|
    | `data-status` | `open` (Live), `rough` (Early), `building` (In progress), or `idea` (Idea) |
-   | `data-started` | `YYYY-MM-DD` |
+   | `data-started` | `YYYY-MM-DD`. Sets its order along the side-project trail on the map, which runs alongside the career trail |
    | `data-updated` | `YYYY-MM-DD`. Refreshed live from GitHub when `data-repo` is set |
    | `data-commits` | sets how tall its peak is on the map |
    | `data-repo` | `owner/name` on GitHub |
-   | `data-map` | `"E,N"` from the map's coordinate readout (hover the map to find a spot). Leave it out and the project is placed in open ground automatically |
    | `data-short` | a shorter name for the elevation profile |
 
 5. Drop screenshots in `projects/<id>/` and reference them with `<figure>`. Two images side by side: `<figure class="shots">`. Pixel art: add `class="pixels"` to the `<img>`.
