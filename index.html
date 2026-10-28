@@ -257,7 +257,7 @@ footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
   .profile .label { border-right: 0; padding: 12px 16px 0; }
   .stops { padding: 12px 16px; }
   .station { grid-template-columns: minmax(0, 1fr); }
-  .card { top: auto; bottom: 0; right: 0; left: 0; width: 100%; max-height: 62%; border-radius: 12px 12px 0 0; }
+  .card { top: auto; bottom: 0; right: 0; left: 0; width: 100%; max-height: 52%; border-radius: 12px 12px 0 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
@@ -414,7 +414,7 @@ thicket &gt; thicket.md</pre>
           <div><dt>Before</dt><dd>UrbanFootprint, Google (Chrome, Knowledge Graph, Consumer Surveys), Metaweb, OSAF, Macromedia, Mozilla, Netscape</dd></div>
           <div><dt>School</dt><dd>Carnegie Mellon</dd></div>
           <div><dt>Web standards</dt><dd>IndexedDB and Service Worker</dd></div>
-          <div><dt>Languages</dt><dd>C/C++, then Python and JavaScript, lately Swift, TypeScript and Zig</dd></div>
+          <div><dt>Languages</dt><dd>C/C++, then Python and JavaScript, lately TypeScript and Zig</dd></div>
           <div><dt>Off the clock</dt><dd>Mountain, road &amp; bikepacking, the outdoors, comics, board games, 3D printing, economics, movies, WNBA</dd></div>
         </dl>
       </div>
@@ -439,33 +439,33 @@ thicket &gt; thicket.md</pre>
 // Projects are the <article class="proj"> blocks above. Career waypoints are fixed here.
 // Map units: x runs 0–2400 east, y runs 0–1600 south. The readout shows E = x/10, N = (1600 - y)/10.
 const CAREER = [
-  { id: "cmu", name: "Carnegie Mellon", short: "CMU", meta: "1990s", at: [[170, 1460]],
+  { id: "cmu", name: "Carnegie Mellon", short: "CMU", meta: "1990s", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Carnegie_Mellon_University"]], at: [[170, 1460]],
     body: ["I went to Carnegie Mellon in the '90s."] },
-  { id: "netscape", name: "Netscape", meta: "Navigator · Mail · C/C++", at: [[260, 1400], [370, 1310]],
-    body: ["My first job. I worked on the original Navigator browser and on the mail client, and played a small part in open-sourcing the code that became Mozilla."] },
-  { id: "mozilla", name: "Mozilla", meta: "C/C++ · a few years", at: [[420, 1220], [340, 1160], [290, 1090]],
+  { id: "netscape", name: "Netscape", meta: "Navigator · Mail · C/C++", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Netscape_Navigator"]], at: [[260, 1400], [370, 1310]],
+    body: ["I worked on the original Navigator browser and on the mail client, and played a small part in open-sourcing the code that became Mozilla."] },
+  { id: "mozilla", name: "Mozilla", meta: "C/C++ · a few years", links: [["mozilla.org", "https://www.mozilla.org/"]], at: [[420, 1220], [340, 1160], [290, 1090]],
     body: ["Then a few years working on Mozilla itself, mostly in C and C++."] },
-  { id: "macromedia", name: "Macromedia", meta: "Tech writer · six months", at: [[330, 1010], [420, 990], [500, 940]],
+  { id: "macromedia", name: "Macromedia", meta: "Tech writer · six months", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Macromedia"]], at: [[330, 1010], [420, 990], [500, 940]],
     body: ["Six months as a tech writer at Macromedia, writing the developer docs for the predecessor to Adobe AIR, before going fully back to engineering."] },
-  { id: "osaf", name: "OSAF", meta: "Open Source Applications Foundation · Python", at: [[520, 860], [440, 820], [420, 740]],
+  { id: "osaf", name: "OSAF", meta: "Open Source Applications Foundation · Python", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Open_Source_Applications_Foundation"], ["Chandler", "https://en.wikipedia.org/wiki/Chandler_(software)"]], at: [[520, 860], [440, 820], [420, 740]],
     body: ["At the Open Source Applications Foundation we shipped a mail and calendar app built to take on Outlook. It's where I learned Python, and where I fell in love with it."] },
-  { id: "metaweb", name: "Metaweb", meta: "Graph database · Python · JavaScript", at: [[480, 670], [540, 630], [620, 620]],
+  { id: "metaweb", name: "Metaweb", meta: "Graph database · Python · JavaScript", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Metaweb"]], at: [[480, 670], [540, 630], [620, 620]],
     body: ["Metaweb built a graph database. I wrote Python and JavaScript on the public API server and the frontend, including a dynamic UI generated from the data in the graph itself."] },
-  { id: "knowledge-graph", name: "Knowledge Graph", meta: "Google · data pipelines", at: [[700, 680], [790, 730]],
+  { id: "knowledge-graph", name: "Google: Knowledge Graph", short: "Knowledge Graph", meta: "Data pipelines", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Google_Knowledge_Graph"]], at: [[700, 680], [790, 730]],
     body: ["Google bought Metaweb, and it became Google's Knowledge Graph. I built the data pipelines that carried Metaweb's data out to the rest of Google."] },
-  { id: "chrome", name: "Chrome", meta: "Google · IndexedDB · Service Worker · W3C", at: [[870, 680], [960, 610]],
+  { id: "chrome", name: "Google: Chrome", short: "Chrome", meta: "IndexedDB · Service Worker · W3C", links: [["IndexedDB", "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API"], ["Service Worker", "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API"]], at: [[870, 680], [960, 610]],
     body: ["On Chrome I worked on the IndexedDB implementation, and a bit on the standard as it evolved at the W3C.",
       "Then I was the tech lead for Service Worker in Chrome, working with Mozilla to figure out what it should be."] },
-  { id: "surveys", name: "Consumer Surveys", short: "Surveys", meta: "Google · market research", at: [[1050, 650], [1080, 730], [1110, 810]],
+  { id: "surveys", name: "Google: Consumer Surveys", short: "Surveys", meta: "Market research", links: [["Wikipedia", "https://en.wikipedia.org/wiki/Google_Surveys"]], at: [[1050, 650], [1080, 730], [1110, 810]],
     body: ["Google Consumer Surveys: market research that gave sites a way to earn revenue other than ads."] },
-  { id: "urbanfootprint", name: "UrbanFootprint", meta: "Geospatial · urban planning", at: [[1070, 900], [1010, 960], [990, 1050]],
+  { id: "urbanfootprint", name: "UrbanFootprint", meta: "Geospatial · urban planning", links: [["urbanfootprint.com", "https://urbanfootprint.com/"]], at: [[1070, 900], [1010, 960], [990, 1050]],
     body: ["I left Google to help start UrbanFootprint, an urban planning app built around geospatial workflows for planners and developers. Lots of maps."] },
-  { id: "tgp", name: "The General Partnership", short: "TGP", meta: "Now", at: [[1060, 1120], [1150, 1130], [1250, 1150]],
-    body: ["Where I am now (it was called Sweat Equity Ventures when I joined). I've been embedded with many startups, helping them bootstrap: setting up how the team builds software, building first proofs of concept, and getting early apps into production.",
+  { id: "tgp", name: "The General Partnership", short: "TGP", meta: "Now", links: [["thegp.com", "https://www.thegp.com/"]], at: [[1060, 1120], [1150, 1130], [1250, 1150]],
+    body: ["Where I am now. I've been embedded with many startups, helping them bootstrap: setting up how the team builds software, building first proofs of concept, and getting early apps into production.",
       "My sweet spot is teams of 2 to 10 people getting a new company off the ground."] },
 ];
-const TRAIL_END = { id: "next", kind: "career", name: "Next", meta: "Now", x: 2280, y: 420,
-  body: ["What I'm working on now is at the top of the page."], links: [["Projects", "#projects"]] };
+const TRAIL_END = { id: "next", kind: "career", name: "Today", meta: "Now", x: 2280, y: 420,
+  body: ["Still at The General Partnership, and still starting side projects. The latest are at the top of the page."], links: [["Projects", "#projects"]] };
 // The stretch of main trail after the career stops, through the valleys between project peaks.
 const MAIN_TAIL = [[1380, 1060], [1560, 920], [1660, 800], [1700, 640], [1760, 530], [1900, 480], [2080, 450]];
 
@@ -478,8 +478,6 @@ const HOBBIES = [
     body: ["Mountain biking, as often as I can."] },
   { id: "switchbacks", name: "Road riding", meta: "Outdoors", glyph: "road", x: 1990, y: 1120,
     body: ["Road riding too."] },
-  { id: "equilibrium", name: "Economics", meta: "Interests", glyph: "econ", x: 1650, y: 600,
-    body: ["I'm interested in economics and read about it a lot."] },
   { id: "valkyries", name: "Valkyries", meta: "WNBA", glyph: "ball", x: 2170, y: 650,
     body: ["A new Golden State Valkyries fan."] },
   { id: "drive-in", name: "Movies", meta: "Interests", glyph: "film", x: 600, y: 1440,
@@ -918,7 +916,7 @@ for (const item of ALL) {
   b.addEventListener("pointerdown", e => e.stopPropagation());
   markersEl.appendChild(b); markerEls.push(b);
 }
-for (const [label, x, y, cls] of [["Google", 840, 560, "region"]]) {
+for (const [label, x, y, cls] of []) {
   if (cls === "forest" && !stopById.thicket) continue;
   const el = document.createElement("div"); el.className = "place " + cls; el.textContent = label;
   el._x = x; el._y = y; markersEl.appendChild(el); markerEls.push(el);
@@ -980,7 +978,7 @@ function animate(duration, step, done) {
   anim = { raf: requestAnimationFrame(tick) };
 }
 // Keep the subject clear of the trail notes card.
-const cardOffset = () => cw < 900 ? [0, ch * 0.22] : [-Math.min(190, cw * 0.15), 0];
+const cardOffset = () => cw <= 900 ? [0, -ch * 0.26] : [-Math.min(190, cw * 0.15), 0];
 function flyTo(x, y, s, duration = 900) {
   const [c0x, c0y] = center(), s0 = view.s, [ox, oy] = cardOffset();
   const target = Math.max(minS(), Math.min(maxS(), s));
