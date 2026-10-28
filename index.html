@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>The Alecf Range</title>
+<title>Alec</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Alec is a software developer. Here's what he's building, plus a trail map of thirty-some years of how he got here.">
+<meta name="description" content="Alec is a software developer with 30+ years in the industry. Side projects, background, and a map of his career.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Mono:wght@400;500&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
@@ -81,7 +81,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 800; line-height: 0.
 /* ---------- top bar ---------- */
 .topbar { padding-block: 14px; display: flex; gap: 16px; align-items: baseline; justify-content: space-between; flex-wrap: wrap; }
 .wordmark { font: 800 1.5rem/1 var(--font-display); letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; }
-.wordmark span { color: var(--trail); }
 .topbar nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .topbar nav a { font: 500 0.78rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; color: var(--muted); }
 .topbar nav a:hover { color: var(--trail); }
@@ -104,23 +103,13 @@ section.band { padding-block: 56px 8px; }
   min-width: 0; transition: box-shadow .3s, border-color .3s;
 }
 .proj.flash { border-color: var(--trail); box-shadow: 0 0 0 3px color-mix(in srgb, var(--trail) 30%, transparent); }
-.proj .thumb { position: relative; height: 84px; border-bottom: 1px solid var(--rule); background: var(--paper); }
-.proj .thumb canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.proj .thumb .elev {
-  position: absolute; right: 10px; bottom: 8px; font: 500 0.7rem/1 var(--font-mono); color: var(--muted);
-  background: color-mix(in srgb, var(--sheet) 85%, transparent); padding: 4px 6px; border-radius: 3px; font-variant-numeric: tabular-nums;
-}
-.sign {
-  position: absolute; left: 10px; top: 10px; background: var(--sign); color: var(--sign-ink); border-radius: 4px; padding: 6px 9px 5px;
-  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--sign-ink) 30%, transparent), inset 0 0 0 4px var(--sign);
-  font: 600 0.82rem/1 var(--font-display); letter-spacing: .14em; text-transform: uppercase; display: flex; gap: 7px; align-items: center;
-}
+.status { display: inline-flex; align-items: center; gap: 7px; font: 500 0.7rem/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
 .dot.open { background: #3fbf72; }
 .dot.rough { background: #e6b030; }
 .dot.building { background: #ff6f9c; }
-.dot.idea { background: transparent; border: 2px solid var(--sign-ink); }
-.proj .body { padding: 18px 20px 16px; display: flex; flex-direction: column; gap: 12px; }
+.dot.idea { background: transparent; border: 2px solid var(--muted); }
+.proj .body { padding: 20px 20px 16px; display: flex; flex-direction: column; gap: 12px; }
 .proj h3 { font-size: 2rem; text-transform: uppercase; letter-spacing: .03em; }
 .proj p { margin: 0; }
 .proj .stack { font: 400 0.74rem/1.4 var(--font-mono); color: var(--muted); margin-top: -6px; }
@@ -278,10 +267,10 @@ footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
 <body>
 
 <header class="wrap topbar">
-  <a class="wordmark" href="#" id="top">alec<span>f</span></a>
+  <a class="wordmark" href="#" id="top">Alec</a>
   <nav aria-label="Sections">
     <a href="#projects">Projects</a>
-    <a href="#map-section">Trail map</a>
+    <a href="#map-section">Map</a>
     <a href="#about">About</a>
     <a href="https://github.com/alecf">GitHub</a>
   </nav>
@@ -291,13 +280,12 @@ footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
   <section class="intro">
     <div class="eyebrow">Software developer · 30+ years in · Still building</div>
     <h1>Hi, I'm Alec. I build the things I <em>can't stop thinking about.</em></h1>
-    <p>By day I help startups get off the ground at The General Partnership. The rest of the time I'm turning a long list of ideas into working software, lately with a lot of help from AI. Here's what's on the trail right now.</p>
+    <p>By day I help startups get off the ground at The General Partnership. The rest of the time I'm turning a long list of ideas into working software, lately with a lot of help from AI. Here's what I've been building.</p>
   </section>
 
   <section class="band" id="projects">
     <div class="band-head">
-      <h2>Trail conditions</h2>
-      <p>My side projects and where each one stands. Every one is a peak on the map below, and each has its own link you can share.</p>
+      <h2>Projects</h2>
     </div>
     <div class="projects" id="project-grid">
 
@@ -352,7 +340,7 @@ thicket &gt; thicket.md</pre>
         <p class="links"><a href="https://github.com/alecf/thicket">Repo ↗</a> <a href="https://alecf.github.io/thicket/report-guide.md">Field guide ↗</a></p>
       </article>
 
-      <article class="proj" id="wled-pro" data-status="building" data-started="2025-12-19" data-updated="2026-10-27" data-commits="120" data-repo="alecf/wled-pro" data-map="153,56">
+      <article class="proj" id="wled-pro" data-status="building" data-started="2025-12-19" data-updated="2026-10-27" data-commits="120" data-repo="alecf/wled-pro" data-map="166,38">
         <h3>WLED Pro</h3>
         <p class="stack">React · TypeScript · Vite · Bun</p>
         <p>A new UI for WLED, the open source firmware that drives ESP32-based LED lighting controllers. It's served straight from the controller, with live state kept in sync through TanStack Query.</p>
@@ -369,20 +357,16 @@ thicket &gt; thicket.md</pre>
   <section class="band" id="map-section">
     <div class="band-head">
       <h2>How I got here</h2>
-      <p>Thirty-some years of work as one trail, from Carnegie Mellon to today's side projects, with a few side trails for life off the clock.</p>
     </div>
     <div class="hero">
       <aside class="sheet">
-        <div class="eyebrow">Sheet 1 of 1 · Surveyed 1990s–2026</div>
-        <h3>The Alecf Range <small>Trails, peaks &amp; side quests</small></h3>
-        <p>Netscape Navigator, Mozilla, a detour through a high school math classroom, Google's Knowledge Graph, Chrome's Service Worker, UrbanFootprint, and whatever I started last weekend.</p>
-        <button class="btn" id="ride" type="button">Ride the trail <span aria-hidden="true">→</span></button>
+        <button class="btn" id="ride" type="button">Take the tour <span aria-hidden="true">→</span></button>
         <dl class="legend" aria-label="Map legend">
-          <div><dt><svg width="18" height="16" viewBox="0 0 18 16" aria-hidden="true"><path d="M9 1 17 15H1Z" fill="var(--trail)"/></svg></dt><dd>Peak: a project I built</dd></div>
-          <div><dt><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2.5"/></svg></dt><dd>Waypoint: a stop in my career</dd></div>
-          <div><dt><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="var(--spur)"/></svg></dt><dd>Side trail: detours and life off the clock</dd></div>
-          <div><dt><svg width="26" height="8" viewBox="0 0 26 8" aria-hidden="true"><path d="M1 4H25" stroke="var(--trail)" stroke-width="3" stroke-dasharray="6 3"/></svg></dt><dd>The main trail, oldest to newest</dd></div>
-          <div class="fine"><dd>Contour interval 300 ft. Index contours every 1,500 ft. Terrain is procedurally generated, but peak heights are real: each one rises with its project's commit count.</dd></div>
+          <div><dt><svg width="18" height="16" viewBox="0 0 18 16" aria-hidden="true"><path d="M9 1 17 15H1Z" fill="var(--trail)"/></svg></dt><dd>Side project</dd></div>
+          <div><dt><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2.5"/></svg></dt><dd>Job</dd></div>
+          <div><dt><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="var(--spur)"/></svg></dt><dd>Detours and interests</dd></div>
+          <div><dt><svg width="26" height="8" viewBox="0 0 26 8" aria-hidden="true"><path d="M1 4H25" stroke="var(--trail)" stroke-width="3" stroke-dasharray="6 3"/></svg></dt><dd>Career, oldest to newest</dd></div>
+          <div class="fine"><dd>Contour interval 300 ft. Index contours every 1,500 ft. Terrain is procedurally generated, but each project's peak rises with its commit count.</dd></div>
         </dl>
         <p class="hint" id="hint">Drag to pan. Pinch or ⌘/Ctrl + scroll to zoom. Click anything that looks clickable.</p>
       </aside>
@@ -402,8 +386,8 @@ thicket &gt; thicket.md</pre>
 
       <div class="profile">
         <div class="label">
-          <strong>Elevation profile</strong>
-          <span class="hint">The real terrain under the trail, start to now. Hover or drag to scrub.</span>
+          <strong>Elevation</strong>
+          <span class="hint">Hover or drag to scrub.</span>
         </div>
         <canvas id="profile" aria-label="Elevation profile of the trail"></canvas>
       </div>
@@ -413,8 +397,8 @@ thicket &gt; thicket.md</pre>
 
   <section class="band" id="about">
     <div class="band-head">
-      <h2>About Alec</h2>
-      <p>The short version, in words instead of contour lines.</p>
+      <h2>About</h2>
+      
     </div>
     <div class="station">
       <div class="bio">
@@ -441,7 +425,7 @@ thicket &gt; thicket.md</pre>
 <footer>
   <div class="wrap">
     <div class="links" id="links"></div>
-    <small>Map not to scale. Terrain generated from seed 1994. No trails were harmed.</small>
+    <small>Map terrain is procedurally generated from seed 1994.</small>
   </div>
 </footer>
 
@@ -455,14 +439,14 @@ thicket &gt; thicket.md</pre>
 // Projects are the <article class="proj"> blocks above. Career waypoints are fixed here.
 // Map units: x runs 0–2400 east, y runs 0–1600 south. The readout shows E = x/10, N = (1600 - y)/10.
 const CAREER = [
-  { id: "cmu", name: "Carnegie Mellon", short: "CMU", meta: "1990s · where the trail starts", at: [[170, 1460]],
-    body: ["Carnegie Mellon in the '90s. Every trail needs a trailhead, and this is mine."] },
+  { id: "cmu", name: "Carnegie Mellon", short: "CMU", meta: "1990s", at: [[170, 1460]],
+    body: ["I went to Carnegie Mellon in the '90s."] },
   { id: "netscape", name: "Netscape", meta: "Navigator · Mail · C/C++", at: [[260, 1400], [370, 1310]],
-    body: ["My first stop out of school. I worked on the original Navigator browser and on the mail client, and played a small part in open-sourcing the code that became Mozilla."] },
+    body: ["My first job. I worked on the original Navigator browser and on the mail client, and played a small part in open-sourcing the code that became Mozilla."] },
   { id: "mozilla", name: "Mozilla", meta: "C/C++ · a few years", at: [[420, 1220], [340, 1160], [290, 1090]],
     body: ["Then a few years working on Mozilla itself, mostly in C and C++."] },
   { id: "macromedia", name: "Macromedia", meta: "Tech writer · six months", at: [[330, 1010], [420, 990], [500, 940]],
-    body: ["My way back into tech after the classroom: six months as a tech writer at Macromedia, writing the developer docs for the predecessor to Adobe AIR."] },
+    body: ["Six months as a tech writer at Macromedia, writing the developer docs for the predecessor to Adobe AIR, before going fully back to engineering."] },
   { id: "osaf", name: "OSAF", meta: "Open Source Applications Foundation · Python", at: [[520, 860], [440, 820], [420, 740]],
     body: ["At the Open Source Applications Foundation we shipped a mail and calendar app built to take on Outlook. It's where I learned Python, and where I fell in love with it."] },
   { id: "metaweb", name: "Metaweb", meta: "Graph database · Python · JavaScript", at: [[480, 670], [540, 630], [620, 620]],
@@ -471,39 +455,41 @@ const CAREER = [
     body: ["Google bought Metaweb, and it became Google's Knowledge Graph. I built the data pipelines that carried Metaweb's data out to the rest of Google."] },
   { id: "chrome", name: "Chrome", meta: "Google · IndexedDB · Service Worker · W3C", at: [[870, 680], [960, 610]],
     body: ["On Chrome I worked on the IndexedDB implementation, and a bit on the standard as it evolved at the W3C.",
-      "Then I was the tech lead for Service Worker in Chrome, working with Mozilla to figure out what it should be. If a site you use works offline, there's a good chance a service worker is involved."] },
+      "Then I was the tech lead for Service Worker in Chrome, working with Mozilla to figure out what it should be."] },
   { id: "surveys", name: "Consumer Surveys", short: "Surveys", meta: "Google · market research", at: [[1050, 650], [1080, 730], [1110, 810]],
     body: ["Google Consumer Surveys: market research that gave sites a way to earn revenue other than ads."] },
   { id: "urbanfootprint", name: "UrbanFootprint", meta: "Geospatial · urban planning", at: [[1070, 900], [1010, 960], [990, 1050]],
-    body: ["I left Google to help start UrbanFootprint, an urban planning app built around geospatial workflows for planners and developers. It's a big part of why this homepage is a map."] },
-  { id: "tgp", name: "The General Partnership", short: "TGP", meta: "Now · formerly Sweat Equity Ventures", at: [[1060, 1120], [1150, 1130], [1250, 1150]],
-    body: ["Where I am now. I've been embedded with many startups, helping them bootstrap: setting up how the team builds software, building first proofs of concept, and getting early apps into production.",
+    body: ["I left Google to help start UrbanFootprint, an urban planning app built around geospatial workflows for planners and developers. Lots of maps."] },
+  { id: "tgp", name: "The General Partnership", short: "TGP", meta: "Now", at: [[1060, 1120], [1150, 1130], [1250, 1150]],
+    body: ["Where I am now (it was called Sweat Equity Ventures when I joined). I've been embedded with many startups, helping them bootstrap: setting up how the team builds software, building first proofs of concept, and getting early apps into production.",
       "My sweet spot is teams of 2 to 10 people getting a new company off the ground."] },
 ];
-const TRAIL_END = { id: "next", kind: "career", name: "Trail Continues", short: "Next", meta: "Under construction", x: 2230, y: 190,
-  body: ["There's always another idea. Check the trail conditions for what I'm working on now."], links: [["Trail conditions", "#projects"]] };
+const TRAIL_END = { id: "next", kind: "career", name: "Next", meta: "Now", x: 2280, y: 420,
+  body: ["What I'm working on now is at the top of the page."], links: [["Projects", "#projects"]] };
+// The stretch of main trail after the career stops, through the valleys between project peaks.
+const MAIN_TAIL = [[1380, 1060], [1560, 920], [1660, 800], [1700, 640], [1760, 530], [1900, 480], [2080, 450]];
 
 const HOBBIES = [
-  { id: "math-class", name: "Room 214", tag: "Detour", meta: "High school math teacher", glyph: "pi", x: 120, y: 1010,
-    body: ["Between Mozilla and Macromedia I took time off to become a high school math teacher. It wasn't for me, but I'm glad I found that out instead of wondering."] },
-  { id: "overnighter", name: "The Overnighter", meta: "Bikepacking loop", glyph: "loop", x: 330, y: 430,
-    body: ["Bikepacking: strap everything to the bike and ride until it's time to camp. This one loops around Backlog Lake, where ideas wait their turn."] },
-  { id: "singletrack", name: "Singletrack Spur", meta: "Mountain biking", glyph: "bike", x: 1060, y: 1380,
-    body: ["Mountain biking. Read the line, commit, adjust. It's the closest thing to debugging with your whole body."] },
-  { id: "switchbacks", name: "Switchback Road", meta: "Road riding", glyph: "road", x: 1990, y: 1120,
-    body: ["Road riding. Long climbs, smooth pavement, and a lot of uninterrupted time to think."] },
-  { id: "equilibrium", name: "Equilibrium Saddle", meta: "Economics", glyph: "econ", x: 1650, y: 600,
-    body: ["I've got a real interest in economics. A saddle is where two slopes meet, which is also where supply meets demand."] },
-  { id: "valkyries", name: "Valkyries Overlook", meta: "WNBA", glyph: "ball", x: 2170, y: 650,
-    body: ["A new Golden State Valkyries fan. The WNBA is great basketball and you should be watching it."] },
-  { id: "drive-in", name: "The Drive-In", meta: "Cinephile", glyph: "film", x: 600, y: 1440,
-    body: ["Movies, lots of them. Ask me for a recommendation, but block out some time first."] },
-  { id: "comic-shop", name: "Comic Shop", meta: "Comics", glyph: "bubble", x: 800, y: 1250,
-    body: ["I read comics. This is the stop where the trail gets a lot more colorful."] },
-  { id: "game-hut", name: "Game Night Hut", meta: "Board games", glyph: "meeple", x: 1420, y: 1380,
-    body: ["Board games: the heavier the rulebook, the better the evening."] },
-  { id: "print-shop", name: "Print Shop", meta: "3D printing", glyph: "cube", x: 1200, y: 300,
-    body: ["Dabbling in 3D printing. Useful parts, questionable parts, and the occasional spaghetti."] },
+  { id: "math-class", name: "Teaching", tag: "Detour", meta: "High school math", glyph: "pi", x: 120, y: 1010,
+    body: ["Between Mozilla and Macromedia I took time off to become a high school math teacher. It wasn't for me."] },
+  { id: "overnighter", name: "Bikepacking", meta: "Outdoors", glyph: "loop", x: 330, y: 430,
+    body: ["Bikepacking trips, when I can get away for a few days."] },
+  { id: "singletrack", name: "Mountain biking", meta: "Outdoors", glyph: "bike", x: 1060, y: 1380,
+    body: ["Mountain biking, as often as I can."] },
+  { id: "switchbacks", name: "Road riding", meta: "Outdoors", glyph: "road", x: 1990, y: 1120,
+    body: ["Road riding too."] },
+  { id: "equilibrium", name: "Economics", meta: "Interests", glyph: "econ", x: 1650, y: 600,
+    body: ["I'm interested in economics and read about it a lot."] },
+  { id: "valkyries", name: "Valkyries", meta: "WNBA", glyph: "ball", x: 2170, y: 650,
+    body: ["A new Golden State Valkyries fan."] },
+  { id: "drive-in", name: "Movies", meta: "Interests", glyph: "film", x: 600, y: 1440,
+    body: ["Big movie fan. Happy to give recommendations."] },
+  { id: "comic-shop", name: "Comics", meta: "Interests", glyph: "bubble", x: 800, y: 1250,
+    body: ["I read a lot of comics."] },
+  { id: "game-hut", name: "Board games", meta: "Interests", glyph: "meeple", x: 1420, y: 1380,
+    body: ["Board games, the heavier the better."] },
+  { id: "print-shop", name: "3D printing", meta: "Interests", glyph: "cube", x: 1200, y: 300,
+    body: ["Dabbling in 3D printing."] },
 ];
 
 const LINKS = [
@@ -513,10 +499,10 @@ const LINKS = [
 ];
 
 const STATUS = {
-  open: ["open", "Open"],
-  rough: ["rough", "Open · rough surface"],
-  building: ["building", "Trail work"],
-  idea: ["idea", "Surveying"],
+  open: ["open", "Live"],
+  rough: ["rough", "Early"],
+  building: ["building", "In progress"],
+  idea: ["idea", "Idea"],
 };
 
 // ------------------------------------------------------------------ helpers
@@ -607,24 +593,16 @@ const peaksList = [];
       meta: [p.stack, since].filter(Boolean).join(" · "), body: p.summary ? [p.summary] : [], links: p.links });
   }
 }
-// The trail visits career stops in order, then projects by start date.
-const peaksByDate = [...peaksList].sort((a, b) => (a.project.started || "9999").localeCompare(b.project.started || "9999"));
+// The main trail visits career stops in order; side projects are loops off it.
 const ROUTE = [];
 for (const c of CAREER) {
   c.kind = "career";
   c.at.forEach((p, k) => ROUTE.push(k === c.at.length - 1 ? [p[0], p[1], c.id] : p));
   [c.x, c.y] = c.at[c.at.length - 1];
 }
-{
-  let prev = ROUTE[ROUTE.length - 1], side = 1;
-  for (const pk of [...peaksByDate, TRAIL_END]) {
-    const dx = pk.x - prev[0], dy = pk.y - prev[1];
-    ROUTE.push([prev[0] + dx * 0.5 - dy * 0.16 * side, prev[1] + dy * 0.5 + dx * 0.16 * side]);
-    ROUTE.push([pk.x, pk.y, pk.id]); prev = [pk.x, pk.y]; side = -side;
-  }
-}
-const STOPS = [...CAREER, ...peaksByDate, TRAIL_END];
-const stopById = Object.fromEntries(STOPS.map(s => [s.id, s]));
+ROUTE.push(...MAIN_TAIL, [TRAIL_END.x, TRAIL_END.y, TRAIL_END.id]);
+const STOPS = [...CAREER, TRAIL_END];
+const stopById = Object.fromEntries([...STOPS, ...peaksList].map(s => [s.id, s]));
 
 // ------------------------------------------------------------------ terrain
 const grid = new Float32Array(NX * NY);
@@ -636,7 +614,7 @@ const grid = new Float32Array(NX * NY);
     let h = fbm(x / 430 + 3.1, y / 430 + 7.7) * 0.5;
     h += 0.16 * (x / W) + 0.14 * (1 - y / H);                     // the career climbs to the northeast
     for (const [px, py, amp, r] of bumps) h += amp * Math.exp(-((x - px) ** 2 + (y - py) ** 2) / (2 * r * r));
-    h -= 0.42 * Math.exp(-((x - 330) ** 2 + (y - 430) ** 2) / (2 * 95 * 95)); // Backlog Lake
+    h -= 0.42 * Math.exp(-((x - 330) ** 2 + (y - 430) ** 2) / (2 * 95 * 95)); // a lake for the bikepacking loop
     grid[j * NX + i] = h; lo = Math.min(lo, h); hi = Math.max(hi, h);
   }
   for (let k = 0; k < grid.length; k++) grid[k] = (grid[k] - lo) / (hi - lo);
@@ -703,6 +681,19 @@ function nearestOnRoute(x, y) {
   return route[best];
 }
 
+// Side projects: a loop that leaves the main trail, climbs to the peak and rejoins further on.
+const loops = new Path2D(), loopPts = [];
+for (const pk of peaksList) {
+  let k0 = 0, bd = Infinity;
+  route.forEach(([x, y], k) => { const d = Math.hypot(x - pk.x, y - pk.y); if (d < bd) { bd = d; k0 = k; } });
+  const L = Math.max(50, Math.min(100, bd * 0.45));
+  const A = pointAt(arc[k0] - L), B = pointAt(arc[k0] + L), P = [pk.x, pk.y];
+  const out = (a, b) => [(a[0] + P[0]) / 2 + (a[0] - b[0]) * 0.3, (a[1] + P[1]) / 2 + (a[1] - b[1]) * 0.3];
+  const pts = spline([A, out(A, B), P, out(B, A), B], 14);
+  loops.addPath(toPath(pts)); loopPts.push(...pts);
+  pk.s = arc[k0];
+}
+
 // Side trails: a wiggly spur from the nearest point on the main trail.
 const spurs = new Path2D();
 for (const h of HOBBIES) {
@@ -732,7 +723,8 @@ if (stopById.thicket) {
   for (let k = 0; k < 220; k++) {
     const a = r() * Math.PI * 2, d = Math.sqrt(r()) * 190, x = t.x + Math.cos(a) * d * 1.2, y = t.y + Math.sin(a) * d;
     const [qx, qy] = nearestOnRoute(x, y);
-    if (Math.hypot(qx - x, qy - y) > 16 && Math.hypot(x - t.x, y - t.y) > 30) trees.push([x, y, 4 + r() * 4]);
+    const clear = Math.hypot(qx - x, qy - y) > 16 && loopPts.every(([lx, ly]) => Math.hypot(lx - x, ly - y) > 14);
+    if (clear && Math.hypot(x - t.x, y - t.y) > 30) trees.push([x, y, 4 + r() * 4]);
   }
 }
 
@@ -786,7 +778,9 @@ function paintWorld(c, s, opts = {}) {
   c.strokeStyle = COLORS.spur; c.lineWidth = 3 / s; c.setLineDash([0.1 / s, 5 / s]); c.stroke(spurs);
   c.setLineDash([]);
   c.strokeStyle = COLORS.paper; c.globalAlpha = 0.8; c.lineWidth = 8 / s; c.stroke(ROUTE_PATH); c.globalAlpha = 1;
-  c.strokeStyle = COLORS.trail; c.lineWidth = 3 / s; c.setLineDash([9 / s, 5 / s]); c.stroke(ROUTE_PATH);
+  c.strokeStyle = COLORS.paper; c.globalAlpha = 0.8; c.lineWidth = 6 / s; c.stroke(loops); c.globalAlpha = 1;
+  c.strokeStyle = COLORS.trail; c.lineWidth = 2.2 / s; c.setLineDash([3 / s, 4 / s]); c.stroke(loops);
+  c.lineWidth = 3 / s; c.setLineDash([9 / s, 5 / s]); c.stroke(ROUTE_PATH);
   c.setLineDash([]);
   if (opts.traveled > 0) {
     c.beginPath(); const steps = Math.ceil(opts.traveled / 6);
@@ -802,7 +796,7 @@ function paintWorld(c, s, opts = {}) {
 
 // ------------------------------------------------------------------ project cards
 const factsLine = p => [
-  p.started && `Trail opened ${fmtDate(p.started)}`,
+  p.started && `Started ${fmtDate(p.started)}`,
   p.updated && `last worked on ${fmtDate(p.updated)}`,
   p.commits && `${p.commits} commits`,
 ].filter(Boolean).join(" · ");
@@ -811,32 +805,13 @@ for (const pk of peaksList) {
   const body = document.createElement("div"); body.className = "body";
   body.append(...el.childNodes);
   el.append(body);
-  el.insertAdjacentHTML("afterbegin", `<div class="thumb"><canvas aria-hidden="true"></canvas>
-    <div class="sign"><span class="dot ${dot}"></span>${label}</div>
-    <div class="elev">▲ ${feet(heightAt(pk.x, pk.y)).toLocaleString()} ft</div></div>`);
+  body.insertAdjacentHTML("afterbegin", `<span class="status"><span class="dot ${dot}"></span>${label}</span>`);
   let links = body.querySelector(".links");
   if (!links) { links = document.createElement("p"); links.className = "links"; body.append(links); }
   const facts = factsLine(p);
   if (facts) links.insertAdjacentHTML("beforebegin", `<p class="facts">${facts}</p>`);
   links.insertAdjacentHTML("beforeend", `<button type="button" class="linkbtn" data-map="${esc(p.slug)}">Find it on the map</button>
     <button type="button" class="linkbtn share" data-share="${esc(p.slug)}">Copy link</button>`);
-  p.thumb = el.querySelector(".thumb canvas"); p.pk = pk;
-}
-function drawThumbs() {
-  const dpr = Math.min(2, window.devicePixelRatio || 1);
-  for (const p of PROJECTS) {
-    const cv = p.thumb, pk = p.pk, r = cv.getBoundingClientRect();
-    if (!r.width) continue;
-    cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
-    const c = cv.getContext("2d"), s = Math.max(r.width / 560, 0.8);
-    c.setTransform(dpr, 0, 0, dpr, 0, 0); c.fillStyle = COLORS.paper; c.fillRect(0, 0, r.width, r.height);
-    const ox = r.width * 0.68, oy = r.height * 0.6;
-    c.setTransform(dpr * s, 0, 0, dpr * s, dpr * (ox - pk.x * s), dpr * (oy - pk.y * s));
-    paintWorld(c, s);
-    c.setTransform(dpr, 0, 0, dpr, 0, 0);
-    c.fillStyle = COLORS.trail; c.strokeStyle = COLORS.paper; c.lineWidth = 2;
-    c.beginPath(); c.moveTo(ox, oy - 11); c.lineTo(ox + 10, oy + 7); c.lineTo(ox - 10, oy + 7); c.closePath(); c.fill(); c.stroke();
-  }
 }
 let toastTimer = 0;
 function toast(msg) {
@@ -929,7 +904,7 @@ const HOBBY_PATHS = {
 };
 const hobbyGlyph = g => `<svg width="22" height="22" viewBox="-2 -2 22 22"><circle cx="9" cy="9" r="10" fill="var(--spur)"/><g stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${HOBBY_PATHS[g]}</g></svg>`;
 
-const ALL = [...STOPS, ...HOBBIES.map(h => Object.assign(h, { kind: "hobby" }))];
+const ALL = [...STOPS, ...peaksList, ...HOBBIES.map(h => Object.assign(h, { kind: "hobby" }))];
 const byId = Object.fromEntries(ALL.map(x => [x.id, x]));
 const markerEls = [];
 for (const item of ALL) {
@@ -943,7 +918,7 @@ for (const item of ALL) {
   b.addEventListener("pointerdown", e => e.stopPropagation());
   markersEl.appendChild(b); markerEls.push(b);
 }
-for (const [label, x, y, cls] of [["Backlog Lake", 250, 445, ""], ["The Thicket", 1380, 300, "forest"], ["Mountain View", 700, 540, "region"]]) {
+for (const [label, x, y, cls] of [["Google", 840, 560, "region"]]) {
   if (cls === "forest" && !stopById.thicket) continue;
   const el = document.createElement("div"); el.className = "place " + cls; el.textContent = label;
   el._x = x; el._y = y; markersEl.appendChild(el); markerEls.push(el);
@@ -964,7 +939,7 @@ const ORDER = STOPS.map(s => s.id);
 
 function renderCard(item) {
   const i = ORDER.indexOf(item.id), p = item.project;
-  const tag = item.tag ? "Side trail · " + item.tag : { peak: "Peak · Project", career: "Waypoint", hobby: "Side trail" }[item.kind];
+  const tag = item.tag || { peak: "Side project", career: "Career", hobby: "Interest" }[item.kind];
   const elev = feet(heightAt(item.x, item.y)).toLocaleString();
   card.className = "card " + item.kind;
   card.innerHTML = `
@@ -976,8 +951,8 @@ function renderCard(item) {
     ${p ? `<div class="meta">${factsLine(p)}</div>` : ""}
     <div class="links">${p ? `<a href="#${esc(p.slug)}" data-card="${esc(p.slug)}">Screenshots &amp; more ↑</a>` : ""}${(item.links || []).map(([t, u]) => `<a href="${esc(u)}">${esc(t)} ↗</a>`).join("")}</div>
     <div class="nav">
-      ${i >= 0 ? `<button type="button" data-step="-1" ${i === 0 ? "disabled" : ""}>← Back down</button>
-      <button type="button" data-step="1" ${i === ORDER.length - 1 ? "disabled" : ""}>Onward →</button>` : `<button type="button" data-back>← Back to the main trail</button>`}
+      ${i >= 0 ? `<button type="button" data-step="-1" ${i === 0 ? "disabled" : ""}>← Previous</button>
+      <button type="button" data-step="1" ${i === ORDER.length - 1 ? "disabled" : ""}>Next →</button>` : `<button type="button" data-back>← Back to career</button>`}
     </div>`;
   card.hidden = false;
   card.querySelector(".x").onclick = closeCard;
@@ -1027,7 +1002,7 @@ function rideTo(stop) {
 function go(id) {
   const item = byId[id]; if (!item) return;
   activeId = id; markActive(); renderCard(item);
-  if (item.kind === "hobby") flyTo(item.x, item.y, Math.max(view.s, fit * 2.2));
+  if (item.kind !== "career") flyTo(item.x, item.y, Math.max(view.s, fit * 2.2));
   else rideTo(item);
 }
 function showProject(slug) {
@@ -1137,6 +1112,11 @@ function drawProfile() {
     const lx = Math.min(pw - padR - w, Math.max(padL, x - w / 2));
     if (lx > lastRight + 6) { c.fillStyle = st.id === activeId ? COLORS.trail : COLORS.muted; c.fillText(label, lx, 14); lastRight = lx + w; }
   }
+  for (const pk of peaksList) {
+    const x = X(pk.s), y = Y(heightAt(...pointAt(pk.s)));
+    c.fillStyle = pk.id === activeId ? COLORS.ink : COLORS.trail;
+    c.beginPath(); c.moveTo(x, y - 12); c.lineTo(x + 5, y - 4); c.lineTo(x - 5, y - 4); c.closePath(); c.fill();
+  }
   const mark = hoverS ?? rider;
   if (mark !== null) {
     const x = X(mark), h = heightAt(...pointAt(mark));
@@ -1179,13 +1159,12 @@ for (const p of PROJECTS) {
 }
 
 readTheme();
-const retheme = () => { readTheme(); drawThumbs(); dirty = true; };
+const retheme = () => { readTheme(); dirty = true; };
 const scheme = matchMedia("(prefers-color-scheme: dark)");
 scheme.addEventListener ? scheme.addEventListener("change", retheme) : scheme.addListener(retheme);
 new MutationObserver(retheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 new ResizeObserver(() => { resize(); dirty = true; }).observe(mapEl);
-new ResizeObserver(drawThumbs).observe($("project-grid"));
-resize(); drawThumbs();
+resize();
 requestAnimationFrame(frame);
 if (document.fonts) document.fonts.ready.then(() => { dirty = true; });
 
