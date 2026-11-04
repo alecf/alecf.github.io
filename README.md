@@ -18,7 +18,7 @@ Everything lives in `index.html` (no build step). Screenshots live in `projects/
    |---|---|
    | `data-status` | `open` (Live), `rough` (Early), `building` (In progress), or `idea` (Idea) |
    | `data-started` | `YYYY-MM-DD`. Puts its peak on the map beside that stretch of the career. Peaks updated in the last 30 days (`data-updated`) get a flag |
-   | `data-updated` | `YYYY-MM-DD`. Refreshed live from GitHub when `data-repo` is set |
+   | `data-updated` | `YYYY-MM-DD`, the last real commit (not bots or dependency bumps) |
    | `data-commits` | sets how tall its peak is on the map |
    | `data-repo` | `owner/name` on GitHub |
    | `data-release` | latest release tag, e.g. `v1.2.3`. Shows as "latest release 1.2.3", linked to the GitHub release page |
@@ -37,4 +37,6 @@ To serve this from a domain like `www.alecf.com`, add a `CNAME` file containing 
 
 ## Keeping projects current
 
-In Claude Code, `/update-projects` (in `.claude/skills/update-projects/`) checks every project against GitHub (last real commit, commit count, new sites and releases, repos not on the page yet) and updates `index.html`. The survey alone: `python3 .claude/skills/update-projects/survey.py`.
+The page is fully static: nothing is fetched in the browser. Every Monday, `.github/workflows/update-projects.yml` runs `survey.py --apply`, which updates each project's `data-updated`, `data-commits`, `data-release` and `data-released` from GitHub and pushes to `main`. Anything that needs judgment (new project sites, repos not on the page) goes in that run's summary in the Actions tab.
+
+For those, in Claude Code, `/update-projects` (in `.claude/skills/update-projects/`) checks every project against GitHub (last real commit, commit count, new sites and releases, repos not on the page yet) and updates `index.html`. The survey alone: `python3 .claude/skills/update-projects/survey.py`.

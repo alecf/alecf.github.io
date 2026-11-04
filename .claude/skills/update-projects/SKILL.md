@@ -17,7 +17,7 @@ Read-only. For each project it prints the page's values, what GitHub says now, s
 
 ## 2. Apply the mechanical changes
 
-- `data-updated`, `data-commits`, `data-release` and `data-released`: take them from the `CHANGES:` line. Only published GitHub releases count, not bare tags. The script already ignores bot commits and dependency bumps, and only ever raises `data-commits` (the page's older counts used a different method).
+- `data-updated`, `data-commits`, `data-release` and `data-released`: rerun with `--apply` to write the `CHANGES:` lines into `index.html` (the weekly GitHub Action does this too). Only published GitHub releases count, not bare tags. The script already ignores bot commits and dependency bumps, and only ever raises `data-commits` (the page's older counts used a different method).
 - A site marked `NEW: not linked from the page` that returned 200: add a link to its `<p class="links">`, before `Repo ↗`. Name it for what it is (`Try it ↗`, `Site ↗`, `Download ↗`, `Docs ↗`). `alecf.com/x` and `alecf.github.io/x` are the same site; link the `alecf.github.io` form like the other links do.
 
 ## 3. Read before rewriting copy

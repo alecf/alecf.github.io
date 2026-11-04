@@ -4,16 +4,21 @@
 Prints a markdown report: for each project on the page, what GitHub says now
 (last push, commit count, homepage, Pages site, latest release, commits since the
 page's data-updated) and what differs. Then lists recently pushed public repos
-that aren't on the page yet. Read-only: it never edits index.html.
+that aren't on the page yet.
 
-Usage: python3 survey.py [path/to/index.html] [--owner alecf] [--days 120]
-Needs: gh (authenticated).
+Read-only unless --apply, which writes the CHANGES (data-updated, data-commits,
+data-release, data-released) into index.html. It never touches copy or links.
+
+Usage: python3 survey.py [path/to/index.html] [--apply] [--owner alecf] [--days 120]
+Needs: gh (authenticated; GH_TOKEN works).
 """
 import json, re, subprocess, sys, urllib.request
 from datetime import date, timedelta
 from html.parser import HTMLParser
 
 args = sys.argv[1:]
+apply = "--apply" in args
+args = [a for a in args if a != "--apply"]
 owner = "alecf"
 days = 120
 if "--owner" in args:
@@ -89,6 +94,7 @@ class Articles(HTMLParser):
 parser = Articles()
 parser.feed(open(index_path, encoding="utf-8").read())
 on_page = {}
+updates = {}  # project id -> {attribute: new value}
 
 print(f"# Project survey ({date.today()})\n")
 for p in parser.projects:
@@ -148,15 +154,18 @@ for p in parser.projects:
             for c in commits[:20]:
                 msg = c["commit"]["message"].splitlines()[0][:100]
                 print(f"    - {c['commit']['author']['date'][:10]} {msg}")
-    diffs = []
+    want = {}
     if last_human and last_human != p.get("updated"):
-        diffs.append(f"data-updated {p.get('updated')} -> {last_human}")
+        want["updated"] = last_human
     if n and n > int(p.get("commits") or 0):
-        diffs.append(f"data-commits {p.get('commits')} -> {n}")
-    if tag and (tag != p.get("release") or released != p.get("released")):
-        diffs.append(f"data-release {p.get('release')} -> {tag}; data-released {p.get('released')} -> {released}")
-    if diffs:
-        print(f"- CHANGES: {'; '.join(diffs)}")
+        want["commits"] = str(n)
+    if tag and tag != p.get("release"):
+        want["release"] = tag
+    if released and released != p.get("released"):
+        want["released"] = released
+    if want:
+        updates[p["id"]] = want
+        print("- CHANGES: " + "; ".join(f"data-{k} {p.get(k)} -> {v}" for k, v in want.items()))
     print()
 
 cutoff = (date.today() - timedelta(days=days)).isoformat()
@@ -168,3 +177,18 @@ for r in extra:
     site = r.get("homepage") or (f"https://{owner}.github.io/{r['name']}/" if r.get("has_pages") else "")
     print(f"- {r['full_name']}  pushed={r['pushed_at'][:10]}  stars={r['stargazers_count']}  "
           f"{('site=' + site + '  ') if site else ''}{r.get('description') or ''}")
+
+if apply and updates:
+    html = open(index_path, encoding="utf-8").read()
+    for pid, want in updates.items():
+        m = re.search(r'<article class="proj" id="' + re.escape(pid) + r'"[^>]*>', html)
+        if not m:
+            sys.exit(f"--apply: no <article> opening tag for #{pid}")
+        tag_html = m.group(0)
+        for k, v in want.items():
+            attr = re.compile(r'\sdata-' + k + r'="[^"]*"')
+            new = f' data-{k}="{v}"'
+            tag_html = attr.sub(new, tag_html) if attr.search(tag_html) else tag_html[:-1] + new + ">"
+        html = html[:m.start()] + tag_html + html[m.end():]
+    open(index_path, "w", encoding="utf-8").write(html)
+    print(f"\nApplied changes to {len(updates)} project(s) in {index_path}.")

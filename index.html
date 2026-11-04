@@ -300,7 +300,7 @@ footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
     id            the project's link, e.g. alecf.github.io/#total-recall
     data-status   open | rough | building | idea
     data-started  YYYY-MM-DD (optional; puts its peak beside that stretch of the career on the map)
-    data-updated  YYYY-MM-DD (optional; refreshed from GitHub when data-repo is set)
+    data-updated  YYYY-MM-DD (optional; kept current weekly by .github/workflows/update-projects.yml)
     data-commits  (optional; sets the peak's height)
     data-repo     owner/name on GitHub (optional)
     data-release  latest release tag, e.g. v1.2.3 (optional; links to its GitHub release page)
@@ -1261,19 +1261,8 @@ pcv.addEventListener("pointerup", e => {
   if (Math.abs(near.s - s) < TOTAL * 0.02) go(near.id);
 });
 
-// ------------------------------------------------------------------ links, live facts, boot
+// ------------------------------------------------------------------ links, boot
 $("links").innerHTML = LINKS.filter(([, u]) => u).map(([t, u]) => `<a href="${esc(u)}">${esc(t)}</a>`).join("");
-
-// Freshen "last updated" from GitHub when the API is reachable.
-for (const p of PROJECTS) {
-  if (!p.repo) continue;
-  fetch(`https://api.github.com/repos/${p.repo}`).then(r => r.ok ? r.json() : null).then(j => {
-    if (!j || !j.pushed_at) return;
-    p.updated = j.pushed_at.slice(0, 10);
-    const el = p.el.querySelector(".facts");
-    if (el) el.innerHTML = factsLine(p);
-  }).catch(() => {});
-}
 
 readTheme();
 const retheme = () => { readTheme(); dirty = true; };
