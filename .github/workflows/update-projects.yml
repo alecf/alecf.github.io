@@ -1,0 +1,40 @@
+name: Update projects
+
+# Weekly: refresh each project's last-updated date, commit count and latest
+# release in index.html from GitHub, and push to main. Copy, links and new
+# projects are left for /update-projects; this run's summary lists them.
+on:
+  schedule:
+    - cron: "17 15 * * 1"  # Mondays, 15:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-projects
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Survey and apply
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 .claude/skills/update-projects/survey.py index.html --apply | tee survey.md
+          cat survey.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit and push
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "Nothing to update."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Refresh project dates, commit counts and releases" -- index.html
+          git push

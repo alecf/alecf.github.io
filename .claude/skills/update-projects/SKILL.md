@@ -17,14 +17,12 @@ Read-only. For each project it prints the page's values, what GitHub says now, s
 
 ## 2. Apply the mechanical changes
 
-- `data-updated` and `data-commits`: take them from the `CHANGES:` line. The script already ignores bot commits and dependency bumps, and only ever raises `data-commits` (the page's older counts used a different method).
+- `data-updated`, `data-commits`, `data-release` and `data-released`: rerun with `--apply` to write the `CHANGES:` lines into `index.html` (the weekly GitHub Action does this too). Only published GitHub releases count, not bare tags. The script already ignores bot commits and dependency bumps, and only ever raises `data-commits` (the page's older counts used a different method).
 - A site marked `NEW: not linked from the page` that returned 200: add a link to its `<p class="links">`, before `Repo ↗`. Name it for what it is (`Try it ↗`, `Site ↗`, `Download ↗`, `Docs ↗`). `alecf.com/x` and `alecf.github.io/x` are the same site; link the `alecf.github.io` form like the other links do.
 
 ## 3. Read before rewriting copy
 
 When the commits since the last update show real work (a new feature, a rewrite, a new site, a release), fetch the project's site or README and check the card still tells the truth: the description, the `stack` line, the links (e.g. a "Try it" link to the live app). Keep Alec's plain voice; change only what's now wrong or newly worth saying. Don't touch cards whose only news is dependency bumps.
-
-Write down a note on each release you see, but don't add release numbers to cards unless the card already talks about versions.
 
 ## 4. Ask, don't add
 
