@@ -32,3 +32,7 @@ Career stops, interests and footer links are near the top of the `<script>` in `
 ## Custom domain
 
 To serve this from a domain like `www.alecf.com`, add a `CNAME` file containing the domain and point the DNS at GitHub Pages. Project sites under `alecf.github.io/<repo>/` (thicket, dr-creep-in-zig) will move with it automatically.
+
+## Keeping projects current
+
+In Claude Code, `/update-projects` (in `.claude/skills/update-projects/`) checks every project against GitHub (last real commit, commit count, new sites and releases, repos not on the page yet) and updates `index.html`. The survey alone: `python3 .claude/skills/update-projects/survey.py`.
