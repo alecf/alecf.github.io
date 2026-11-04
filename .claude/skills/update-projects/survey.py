@@ -39,7 +39,7 @@ def is_bot(c):
     return login.endswith("[bot]") or "dependabot" in name or "renovate" in name or name.endswith("[bot]")
 
 
-# Hand-made dependency bumps and release-bot style commits don't count as "worked on".
+# Hand-made dependency bumps and release-bot style commits don't count as updates.
 DEPS = re.compile(r"^(build|chore|ci)?\(?(deps|deps-dev|release)\)?[:!]|^(bump|deps)\b|^chore\(main\): release", re.I)
 
 
@@ -132,7 +132,9 @@ for p in parser.projects:
         print(f"- site ({label}): {url} -> HTTP {status}{flag}")
 
     rel = gh(f"repos/{repo}/releases/latest")
+    tag, released = None, None
     if isinstance(rel, dict) and rel.get("tag_name"):
+        tag, released = rel["tag_name"], (rel.get("published_at") or "")[:10]
         print(f"- latest release: {rel['tag_name']} ({(rel.get('published_at') or '')[:10]}) {rel.get('html_url')}")
     tags = gh(f"repos/{repo}/tags?per_page=1")
     if isinstance(tags, list) and tags and not (isinstance(rel, dict) and rel.get("tag_name")):
@@ -151,6 +153,8 @@ for p in parser.projects:
         diffs.append(f"data-updated {p.get('updated')} -> {last_human}")
     if n and n > int(p.get("commits") or 0):
         diffs.append(f"data-commits {p.get('commits')} -> {n}")
+    if tag and (tag != p.get("release") or released != p.get("released")):
+        diffs.append(f"data-release {p.get('release')} -> {tag}; data-released {p.get('released')} -> {released}")
     if diffs:
         print(f"- CHANGES: {'; '.join(diffs)}")
     print()

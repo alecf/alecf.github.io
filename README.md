@@ -17,10 +17,12 @@ Everything lives in `index.html` (no build step). Screenshots live in `projects/
    | attribute | what it does |
    |---|---|
    | `data-status` | `open` (Live), `rough` (Early), `building` (In progress), or `idea` (Idea) |
-   | `data-started` | `YYYY-MM-DD`. Puts its peak on the map beside that stretch of the career. Peaks worked on in the last 30 days (`data-updated`) get a flag |
+   | `data-started` | `YYYY-MM-DD`. Puts its peak on the map beside that stretch of the career. Peaks updated in the last 30 days (`data-updated`) get a flag |
    | `data-updated` | `YYYY-MM-DD`. Refreshed live from GitHub when `data-repo` is set |
    | `data-commits` | sets how tall its peak is on the map |
    | `data-repo` | `owner/name` on GitHub |
+   | `data-release` | latest release tag, e.g. `v1.2.3`. Shows as "latest release 1.2.3", linked to the GitHub release page |
+   | `data-released` | `YYYY-MM-DD` the release was published |
    | `data-short` | a shorter name for the elevation profile |
 
 5. Drop screenshots in `projects/<id>/` and reference them with `<figure>`. Two images side by side: `<figure class="shots">`. Pixel art: add `class="pixels"` to the `<img>`.

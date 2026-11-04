@@ -303,13 +303,15 @@ footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
     data-updated  YYYY-MM-DD (optional; refreshed from GitHub when data-repo is set)
     data-commits  (optional; sets the peak's height)
     data-repo     owner/name on GitHub (optional)
+    data-release  latest release tag, e.g. v1.2.3 (optional; links to its GitHub release page)
+    data-released YYYY-MM-DD the release was published (optional)
     data-short    shorter name for the elevation profile (optional)
   Everything inside is plain HTML: write whatever you like. The <h3> is the name on the map,
   the first <p> becomes the map's trail note, and links in <p class="links"> show up there too.
   Screenshots go in projects/<id>/.
 -->
 
-      <article class="proj" id="total-recall" data-status="open" data-started="2026-04-01" data-updated="2026-10-29" data-commits="157" data-repo="alecf/totalrecall">
+      <article class="proj" id="total-recall" data-status="open" data-started="2026-04-01" data-updated="2026-10-29" data-commits="157" data-repo="alecf/totalrecall" data-release="v0.12.0" data-released="2026-10-30">
         <h3>Total Recall</h3>
         <p class="stack">macOS menu bar app · Swift</p>
         <p>A menu bar app that shows where your Mac's memory actually went. It groups processes by the app they belong to, and it knows how particular apps split themselves up, so Claude Code shows up session by session, labeled with the folder each one is working in. It lives by one rule: blue is RAM, amber is not.</p>
@@ -332,7 +334,7 @@ footer small { font: 400 0.72rem/1.5 var(--font-mono); color: var(--muted); }
         <p class="links"><a href="https://alecf.github.io/dr-creep-in-zig/game/">Play it ↗</a> <a href="https://alecf.github.io/dr-creep-in-zig/tutorial/">Tutorial ↗</a> <a href="https://github.com/alecf/dr-creep-in-zig">Repo ↗</a></p>
       </article>
 
-      <article class="proj" id="thicket" data-status="open" data-started="2026-08-09" data-updated="2026-11-03" data-commits="107" data-repo="alecf/thicket">
+      <article class="proj" id="thicket" data-status="open" data-started="2026-08-09" data-updated="2026-11-03" data-commits="107" data-repo="alecf/thicket" data-release="v0.1.0" data-released="2026-11-03">
         <h3>Thicket</h3>
         <p class="stack">CLI · TypeScript</p>
         <p>A CLI that reads a TypeScript codebase and writes a plain-text report of duplication and tangled modules, made to be read by an LLM inside a refactoring loop.</p>
@@ -345,7 +347,7 @@ thicket &gt; thicket.md</pre>
         <p class="links"><a href="https://github.com/alecf/thicket">Repo ↗</a> <a href="https://alecf.github.io/thicket/report-guide.md">Field guide ↗</a></p>
       </article>
 
-      <article class="proj" id="wled-pro" data-status="building" data-started="2025-12-19" data-updated="2026-10-27" data-commits="120" data-repo="alecf/wled-pro">
+      <article class="proj" id="wled-pro" data-status="building" data-started="2025-12-19" data-updated="2026-11-04" data-commits="120" data-repo="alecf/wled-pro">
         <h3>WLED Pro</h3>
         <p class="stack">React · TypeScript · Vite · Bun</p>
         <p>A new UI for WLED, the open source firmware that drives ESP32-based LED lighting controllers. It's served straight from the controller, with live state kept in sync through TanStack Query.</p>
@@ -356,7 +358,7 @@ thicket &gt; thicket.md</pre>
         <p class="links"><a href="https://github.com/alecf/wled-pro">Repo ↗</a></p>
       </article>
 
-      <article class="proj" id="photo-restore" data-status="open" data-started="2026-05-29" data-updated="2026-09-26" data-commits="26" data-repo="alecf/photo-restore-mac">
+      <article class="proj" id="photo-restore" data-status="open" data-started="2026-05-29" data-updated="2026-11-04" data-commits="26" data-repo="alecf/photo-restore-mac" data-release="v0.1.2" data-released="2026-06-01">
         <h3>Photo Restore</h3>
         <p class="stack">macOS app · Core ML</p>
         <p>A small Mac app for old family-photo scans. Drag in a faded print or a whole folder and watch each one come back, with a before-and-after slider: auto-contrast, upscaling, and face restoration. It all runs on-device, so nothing leaves your Mac.</p>
@@ -364,7 +366,7 @@ thicket &gt; thicket.md</pre>
         <p class="links"><a href="https://alecf.github.io/photo-restore-mac/">Download ↗</a> <a href="https://github.com/alecf/photo-restore-mac">Repo ↗</a></p>
       </article>
 
-      <article class="proj" id="notes-to-web" data-status="rough" data-started="2026-08-03" data-updated="2026-08-04" data-commits="12" data-repo="alecf/notes-to-web">
+      <article class="proj" id="notes-to-web" data-status="rough" data-started="2026-08-03" data-updated="2026-08-04" data-commits="12" data-repo="alecf/notes-to-web" data-release="v0.4.0" data-released="2026-08-04">
         <h3>notes-to-web</h3>
         <p class="stack">macOS app</p>
         <p>Publishes any Apple Note as a webpage, with its images, videos and other attachments right where they were in the note. You get a folder of static files to upload anywhere, or it can publish straight to Cloudflare for you.</p>
@@ -432,7 +434,7 @@ stat -f "%z %Sm" notes.txt</pre>
         <button class="btn" id="ride" type="button">Take the tour <span aria-hidden="true">→</span></button>
         <dl class="legend" aria-label="Map legend">
           <div><dt><svg width="18" height="16" viewBox="0 0 18 16" aria-hidden="true"><path d="M9 1 17 15H1Z" fill="var(--trail)"/></svg></dt><dd>Side project</dd></div>
-          <div><dt><svg width="18" height="20" viewBox="0 -4 18 20" overflow="visible" aria-hidden="true"><path d="M9 1V-6" stroke="var(--ink)" stroke-width="1.5"/><path d="M9.7 -6h6l-1.7 2 1.7 2h-6Z" fill="var(--ink)"/><path d="M9 1 17 15H1Z" fill="var(--trail)"/></svg></dt><dd>Worked on this month</dd></div>
+          <div><dt><svg width="18" height="20" viewBox="0 -4 18 20" overflow="visible" aria-hidden="true"><path d="M9 1V-6" stroke="var(--ink)" stroke-width="1.5"/><path d="M9.7 -6h6l-1.7 2 1.7 2h-6Z" fill="var(--ink)"/><path d="M9 1 17 15H1Z" fill="var(--trail)"/></svg></dt><dd>Updated this month</dd></div>
           <div><dt><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2.5"/></svg></dt><dd>Job</dd></div>
           <div><dt><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="var(--spur)"/></svg></dt><dd>Detours and interests</dd></div>
           <div><dt><svg width="26" height="8" viewBox="0 0 26 8" aria-hidden="true"><path d="M1 4H25" stroke="var(--trail)" stroke-width="3" stroke-dasharray="6 3"/></svg></dt><dd>Career</dd></div>
@@ -632,7 +634,7 @@ const PROJECTS = projectEls.map(el => {
   return {
     el, slug: el.id, name: h ? h.textContent.trim() : el.id, short: d.short,
     status: STATUS[d.status] ? d.status : "open", started: d.started, updated: d.updated,
-    commits: Number(d.commits) || 0, repo: d.repo,
+    commits: Number(d.commits) || 0, repo: d.repo, release: d.release, released: d.released,
     stack: stack ? stack.textContent.trim() : "",
     summary: firstP ? firstP.textContent.trim() : "",
     links: [...el.querySelectorAll(".links a")].map(a => [a.textContent.replace("↗", "").trim(), a.getAttribute("href")]),
@@ -886,9 +888,15 @@ function paintWorld(c, s, opts = {}) {
 }
 
 // ------------------------------------------------------------------ project cards
+// "v1.2.3" shows as 1.2.3, linked to its GitHub release page when the project has a repo.
+const releaseLink = p => {
+  const v = esc(p.release.replace(/^v(?=\d)/, ""));
+  return p.repo ? `<a href="https://github.com/${esc(p.repo)}/releases/tag/${encodeURIComponent(p.release)}">${v}</a>` : v;
+};
 const factsLine = p => [
   p.started && `Started ${fmtDate(p.started)}`,
-  p.updated && `last worked on ${fmtDate(p.updated)}`,
+  p.updated && `last updated ${fmtDate(p.updated)}`,
+  p.release && `latest release ${releaseLink(p)}${p.released ? ` (${fmtDate(p.released)})` : ""}`,
   p.commits && `${p.commits} commits`,
 ].filter(Boolean).join(" · ");
 for (const pk of peaksList) {
@@ -1256,14 +1264,14 @@ pcv.addEventListener("pointerup", e => {
 // ------------------------------------------------------------------ links, live facts, boot
 $("links").innerHTML = LINKS.filter(([, u]) => u).map(([t, u]) => `<a href="${esc(u)}">${esc(t)}</a>`).join("");
 
-// Freshen "last worked on" from GitHub when the API is reachable.
+// Freshen "last updated" from GitHub when the API is reachable.
 for (const p of PROJECTS) {
   if (!p.repo) continue;
   fetch(`https://api.github.com/repos/${p.repo}`).then(r => r.ok ? r.json() : null).then(j => {
     if (!j || !j.pushed_at) return;
     p.updated = j.pushed_at.slice(0, 10);
     const el = p.el.querySelector(".facts");
-    if (el) el.textContent = factsLine(p);
+    if (el) el.innerHTML = factsLine(p);
   }).catch(() => {});
 }
 
